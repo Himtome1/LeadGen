@@ -25,9 +25,12 @@ export default function(){
             <Button color={"bg-lime-500 hover:bg-lime-500"} onClick={null} text={"APPLY NOW"}></Button>
           </div>
         </div>
-        <div className='h-4/5 bg-gray-100 flex'>
-          <div className='w-2/3 flex flex-col p-20 h-full ml-20  space-y-5'>
-            <p className='w-full text-5xl font-bold font-arial'>
+        <div className='h-4/5 bg-[url("/Dirtbike.jpeg")] bg-center bg-cover flex items-end'>
+        <div className='w-2/3 h-full flex items-center justify-center mr-20'>
+              
+              </div>
+          <div className='w-1/3 flex flex-col p-20 h-full ml-20  space-y-5 items-end '>
+            <p className='w-full text-5xl tefont-bold font-arial'>
               Powersport Financing
             </p>
             <p className='w-full text-5xl font-bold font-arial'>
@@ -36,13 +39,9 @@ export default function(){
             <p className='text-lg font-fine'>
               Get approved from your phone for powersports loans & powersports financing today!
             </p>
-            <div className='text-sm pt-5'><Button color={"bg-lime-500 hover:bg-lime-500"} onClick={null} text={"GET APPROVED"}></Button></div>
+            <div className='text-sm pt-5 items-center justify-center flex w-full'></div>
           </div>
-          <div className='w-1/3 h-full flex items-center justify-center mr-20'>
-              <div className='rounded-full bg-yellow-400 overflow-scroll flex w-[400px] h-[400px]'>
-                <Image alt='' src="/bike.webp" width={1200} height={1200}></Image>
-              </div>
-          </div>
+        
         
         </div>
       </div>

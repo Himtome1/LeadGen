@@ -4,7 +4,7 @@ import useState from "react"
 
 export function Button({onClick, text, color}) {
     
-  return <button className={`${color} rounded-lg  font-bold`} style={{width:"175px", height:"50px"}} onClick={onClick}>{text}</button>
+  return <button className={`bg-black rounded-lg hover:bg-white hover:text-black  font-bold text-white` } style={{width:"175px", height:"50px"}} onClick={onClick}>{text}</button>
 }
 
 export function Input({onChange, placeholder, value}) {
