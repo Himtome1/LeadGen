@@ -1,5 +1,5 @@
 "use client"
-import {Button} from '@/components/UIComponents'
+import {Button, Input, InputSmall} from '@/components/UIComponents'
 import Image from 'next/image'
 
 export default function(){
@@ -95,13 +95,30 @@ Our dedicated team of loan specialists guides applicants through the process, fr
        
       
       </div>
-      <div className="w-screen h-screen bg-blue-500 flex flex-col">
-      
-      </div>
-      <div className="w-screen h-screen bg-blue-500 flex flex-col">
-     
-      
+      <div className='w-screen h-screen flex flex-col'>
+        <div className="w-screen h-1/5 overflow-scroll bg-gradient-to-b from-gray-100 to-white flex flex-col">
+        
         </div>
+        <div className='w-full h-screen bg-white flex items-center justify-center'>
+          <div className='flex flex-col p-20 bg-lime-500 w-[600px] h-[600px] mb-20 rounded-xl drop-shadow-xl items-center justify-center'>
+            <div className='w-full flex h-full flex-col items-center  justify-between'>
+             <div></div>
+             <div className='text-5xl items-center justify-center font-bold text-center w-full flex'>
+              <p>Get Approved Today!</p>
+             </div>
+              <div className='flex w-[350px] justify-between'>
+                <InputSmall placeholder={"First Name"}></InputSmall>
+                <InputSmall placeholder={"Last Name"}></InputSmall>
+              </div>
+              <Input placeholder={"Email"}></Input>
+              <Button color={"bg-white hover:bg-gray-300"} onClick={null} text={"APPLY NOW"}></Button>
+              </div>
+
+          </div>
+        
+        </div>
+      </div>
+     
     </div>
   )
 }
