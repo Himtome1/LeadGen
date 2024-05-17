@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 
 
-export default function(){
+export default function Page(){
   
   return (
     <AnimatePresence>
@@ -14,7 +14,7 @@ export default function(){
           <motion.div className="w-2/3 h-full bg-white px-56 space-x-10 flex">
             <motion.div className='flex h-full text-center items-center'>
                 <p className='text-lg font-bold'>Powersport</p>
-                {` `}
+                <pre> </pre>
                 <p className='text-lg text-lime-500 font-bold'>Financing</p>
             </motion.div>
             <motion.div className='flex h-full text-center items-center'>
@@ -25,10 +25,10 @@ export default function(){
             </motion.div>
           </motion.div>
           <motion.div className="w-1/3 h-full bg-white flex items-center  justify-center">
-            <Button color={"bg-lime-500 hover:bg-lime-500"} onClick={null} text={"APPLY NOW"}></Button>
+            <Button color={"bg-black hover:bg-lime-500 rounded"} onClick={null} text={"APPLY NOW"}></Button>
           </motion.div>
         </motion.div>
-        <motion.div className='h-4/5 bg-[url("/Dirtbike.jpeg")] bg-center bg-cover flex items-end'>
+        <motion.div className='h-4/5 bg-[url("/Dirtbike.jpeg")] bg-center xl:bg-start bg-cover flex items-end'>
         <motion.div className='w-2/3 h-full flex items-center justify-center mr-20'>
               
               </motion.div>
@@ -92,7 +92,7 @@ Our dedicated team of loan specialists guides applicants through the process, fr
 
           </motion.div>
           <motion.div className='w-1/2 h-full flex items-center justify-center'>
-            <Image src="/payment.svg" width={1200} height={1200}></Image>
+            <Image alt="" src="/payment.svg" width={1200} height={1200}></Image>
           </motion.div>
        
       
@@ -109,11 +109,11 @@ Our dedicated team of loan specialists guides applicants through the process, fr
               <p>Get Approved Today!</p>
              </motion.div>
               <motion.div className='flex w-[350px] justify-between'>
-                <InputSmall placeholder={"First Name"}></InputSmall>
-                <InputSmall placeholder={"Last Name"}></InputSmall>
+                <InputSmall onChange={()=>{}} value={null} placeholder={"First Name"}></InputSmall>
+                <InputSmall onChange={()=>{}} value={null} placeholder={"Last Name"}></InputSmall>
               </motion.div>
-              <Input placeholder={"Email"}></Input>
-              <Button color={"bg-white hover:bg-gray-300"} onClick={null} text={"APPLY NOW"}></Button>
+              <Input placeholder={"Email"} onChange={()=>{}} value={null}></Input>
+              <Button color={"bg-black hover:bg-gray-900 hover:text-lime-500 rounded"} onClick={null} text={"APPLY NOW"}></Button>
               </motion.div>
 
           </motion.div>
