@@ -84,13 +84,16 @@ export function Step3({ contact, setContact }) {
                                 type={fields[fs].type}
                                 value={contact[fields[fs].name] || ''}
                                 onChange={(e) => setContact({ ...contact, [fields[fs].name]: e.target.value })}
-                        />:<div className="h-full bg-yellow-400 w-full flex-col flex">
-                            <div className="w-full h-1/2 flex items-center justify-center">
-                                <Button color="bg-black" text={"Today"} onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} />
+                        />:<div className="h-full  w-full flex-col flex">
+                            <div className="w-full h-full flex items-center flex-col space-y-5">
+                                <button className="w-full h-[100px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} > Today</button>
+                                <button className="w-full h-[100px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} > 1-3 Months</button>
+                                <button className="w-full h-[100px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} > 3+ Months</button>
+
                             </div>
                             </div>}
                     </div>
-                    <div className="w-full h-1/2 items-center flex justify-center ">
+                    <div className="w-full h-1/3 items-center flex justify-center ">
                         <Button color="bg-black" text={"Next"} onClick={()=>setFs(fs+1)} />
                     </div>
              
