@@ -35,7 +35,7 @@ export default function Page(){
     
     return(
         <div className='w-screen h-screen bg-gray-100 flex'>
-            <div className='w-2/3 h-full'>  
+            <div className='w-2/3 h-full z-50'>  
                 <div className='w-full h-4/5'>
                     {display()}
                 </div>
@@ -44,7 +44,9 @@ export default function Page(){
                 </div>
             </div>
             <div className='w-1/3 h-full bg-green-400 relative'>
-                <Image style={{objectFit: "cover"}} fill={true} src='/Dirtbike.jpeg'/>
+                <motion.div className='w-screen bg-blue-500 flex h-full z-0 fixed left-20' initial={{x:0}} animate={{x:`${counter*300 -300}px`}} transition={{duration:0.25,}}>
+                    <Image style={{objectFit: "cover"}} fill={true} src='/Dirtbike.jpeg'/>
+                </motion.div>
             </div>
         </div>
     )

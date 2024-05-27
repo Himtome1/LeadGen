@@ -21,8 +21,8 @@ const vehicleTypes = [
 
 const fields = [
     {name: "When were you born?", subHeading:"Please enter your date of brith", type: "date", value: "contact.dob", onChange: "setContact"},
-    {name: "How soon do you need financing?",  subHeading:"Please select below",  type: "text", value: "contact.firstName", onChange: "setContact"},
-    {name: "Last Name", type: "text", value: "contact.lastName", onChange: "setContact"},
+    {name: "How soon do you need financing?",  subHeading:"Please select below",  type: "text", value: "contact.financing", onChange: "setContact"},
+    {name: "What is your name?", subHeading:"Please enter your full legal name", type: "text", value: "contact.name", onChange: "setContact"},
     {name: "Email", type: "email", value: "contact.email", onChange: "setContact"},
     {name: "Phone Number", type: "tel", value: "contact.phoneNumber", onChange: "setContact"},
     {name: "Address", type: "text", value: "contact.address", onChange: "setContact"},
@@ -54,7 +54,7 @@ export function Step2({setVehicleType, selectedVehicleType}){
                     var border =""
                     vehicleType.name == selectedVehicleType? border = "border border-lime-500": border = null
                     return(
-                        <motion.button whileHover={{scale:1.05}} onClick={()=>setVehicleType(vehicleType.name)}  key={index} className={`flex ${border} flex-col items-center justify-center w-full h-full bg-white rounded-lg shadow-md`}>
+                        <motion.button  whileHover={{scale:1.05}} onClick={()=>setVehicleType(vehicleType.name)}  key={index} className={`flex ${border} flex-col items-center justify-center w-full h-full bg-white rounded-lg shadow-md`}>
                             <div className={`w-[100px]  h-[100px] bg-gray-100 rounded-full flex items-center justify-center`}>
                                 {vehicleType.image}
                             </div>
@@ -86,9 +86,9 @@ export function Step3({ contact, setContact }) {
                                 onChange={(e) => setContact({ ...contact, [fields[fs].name]: e.target.value })}
                         />:<div className="h-full  w-full flex-col flex">
                             <div className="w-full h-full flex items-center flex-col space-y-5">
-                                <button className="w-full h-[100px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} > Today</button>
-                                <button className="w-full h-[100px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} > 1-3 Months</button>
-                                <button className="w-full h-[100px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} > 3+ Months</button>
+                                <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} > Today</motion.button>
+                                <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "1-3 Months"})} > 1-3 Months</motion.button>
+                                <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "3+ Months"})} > 3+ Months</motion.button>
 
                             </div>
                             </div>}
