@@ -20,7 +20,8 @@ const vehicleTypes = [
 ]
 
 const fields = [
-    {name: "First Name", type: "text", value: "contact.firstName", onChange: "setContact"},
+    {name: "When were you born?", subHeading:"Please enter your date of brith", type: "date", value: "contact.dob", onChange: "setContact"},
+    {name: "How soon do you need financing?", subHeading:"Please select below",  type: "text", value: "contact.firstName", onChange: "setContact"},
     {name: "Last Name", type: "text", value: "contact.lastName", onChange: "setContact"},
     {name: "Email", type: "email", value: "contact.email", onChange: "setContact"},
     {name: "Phone Number", type: "tel", value: "contact.phoneNumber", onChange: "setContact"},
@@ -28,14 +29,12 @@ const fields = [
     {name: "City", type: "text", value: "contact.city", onChange: "setContact"},
     {name: "State", type: "text", value: "contact.state", onChange: "setContact"},
     {name: "Zip Code", type: "text", value: "contact.zipCode", onChange: "setContact"},
-    {name: "Date of Birth", type: "date", value: "contact.dob", onChange: "setContact"},
-
 
 ]
 
 export function Step1(){
     return(
-        <div className='w-screen h-screen bg-gray-100'>
+        <div className='w-full h-screen bg-gray-100'>
             <div className='flex flex-col items-center justify-center h-full'>
                 <h1 className='text-3xl font-bold'>Ready to start riding?</h1>
                 <p className='text-gray-500'>Let's get you started</p>
@@ -45,7 +44,7 @@ export function Step1(){
 }
 export function Step2({setVehicleType, selectedVehicleType}){
     return(
-        <div className='w-screen h-screen bg-gray-100 flex flex-col'>
+        <div className='w-full h-screen bg-gray-100 flex flex-col'>
             <div className='flex flex-col items-center justify-start h-full'>
                 <div className="h-1/8">
                     <h1 className='text-2xl font-extrabold text-black mt-2'>Select your vehicle type</h1>
@@ -73,22 +72,26 @@ var i = 0
 export function Step3({ contact, setContact }) {
     const [fs, setFs] = useState(0)
     return (
-        <div className='w-screen h-screen bg-gray-100'>
+        <div className='w-full h-screen bg-gray-100'>
             <div className='flex flex-col items-center justify-center h-full'>
-                
-                        <div key={i} className='w-2/3 h-1/8 flex flex-col items-start justify-center'>
-                            <label className='text-lg font-semibold'>{fields[fs].name}</label>
-                            <input
-                                className='w-full h-10 border border-gray-300 rounded-md px-2'
+                <div key={i} className='w-2/3 h-1/2 flex flex-col items-center justify-center'>
+                    <div className="flex flex-col items-center ">
+                        <label className='text-2xl font-semibold'>{fields[fs].name}</label>
+                        <label className='text-md text-gray-400 font-semibold mb-[100px]'>{fields[fs].subHeading}</label>
+                    </div>
+                        <input
+                                className='w-[300px] h-10 border border-gray-300 rounded-md px-2'
                                 type={fields[fs].type}
                                 value={contact[fields[fs].name] || ''}
                                 onChange={(e) => setContact({ ...contact, [fields[fs].name]: e.target.value })}
-                            />
-                        </div>
-                    
+                        />
+                    </div>
+                    <div className="w-full h-1/2 items-center flex justify-center ">
+                        <Button color="bg-black" text={"Next"} onClick={()=>setFs(fs+1)} />
+                    </div>
              
             </div>
-            <Button color="bg-black" text={"Next"} onClick={()=>setFs(fs+1)} />
+            
         </div>
     );
 }

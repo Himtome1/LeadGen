@@ -3,6 +3,7 @@ import {motion, AnimatePresence} from 'framer-motion'
 import {Step1, Step2, Step3} from '@/components/onboarding.js'
 import { Button } from '@/components/UIComponents'
 import {useState, useEffect, use} from 'react'
+import Image from 'next/image'
 
 export default function Page(){
 
@@ -33,12 +34,17 @@ export default function Page(){
     }
     
     return(
-        <div className='w-screen h-screen bg-gray-100'>
-            <div className='w-full h-4/5'>
-                {display()}
+        <div className='w-screen h-screen bg-gray-100 flex'>
+            <div className='w-2/3 h-full'>  
+                <div className='w-full h-4/5'>
+                    {display()}
+                </div>
+                <div className='w-full h-1/5 flex items-center justify-center'>
+                    {counter!==3?<Button disabled={vehicleType==""&&counter==2?true:false} text={'Next'} onClick={()=>{counter==3?setCounter(1):setCounter(counter+1)}} color={"bg-black hover:bg-gray-800"}/>:null}
+                </div>
             </div>
-            <div className='w-full h-1/5 flex items-center justify-center'>
-                <Button disabled={vehicleType==""&&counter==2?true:false} text={'Next'} onClick={()=>{counter==3?setCounter(1):setCounter(counter+1)}} color={"bg-black hover:bg-gray-800"}/>
+            <div className='w-1/3 h-full bg-green-400 relative'>
+                <Image style={{objectFit: "cover"}} fill={true} src='/Dirtbike.jpeg'/>
             </div>
         </div>
     )
