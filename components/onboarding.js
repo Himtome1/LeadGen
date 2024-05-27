@@ -21,7 +21,7 @@ const vehicleTypes = [
 
 const fields = [
     {name: "When were you born?", subHeading:"Please enter your date of brith", type: "date", value: "contact.dob", onChange: "setContact"},
-    {name: "How soon do you need financing?", subHeading:"Please select below",  type: "text", value: "contact.firstName", onChange: "setContact"},
+    {name: "How soon do you need financing?",  subHeading:"Please select below",  type: "text", value: "contact.firstName", onChange: "setContact"},
     {name: "Last Name", type: "text", value: "contact.lastName", onChange: "setContact"},
     {name: "Email", type: "email", value: "contact.email", onChange: "setContact"},
     {name: "Phone Number", type: "tel", value: "contact.phoneNumber", onChange: "setContact"},
@@ -79,12 +79,16 @@ export function Step3({ contact, setContact }) {
                         <label className='text-2xl font-semibold'>{fields[fs].name}</label>
                         <label className='text-md text-gray-400 font-semibold mb-[100px]'>{fields[fs].subHeading}</label>
                     </div>
-                        <input
+                       {fs!=1? <input
                                 className='w-[300px] h-10 border border-gray-300 rounded-md px-2'
                                 type={fields[fs].type}
                                 value={contact[fields[fs].name] || ''}
                                 onChange={(e) => setContact({ ...contact, [fields[fs].name]: e.target.value })}
-                        />
+                        />:<div className="h-full bg-yellow-400 w-full flex-col flex">
+                            <div className="w-full h-1/2 flex items-center justify-center">
+                                <Button color="bg-black" text={"Today"} onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} />
+                            </div>
+                            </div>}
                     </div>
                     <div className="w-full h-1/2 items-center flex justify-center ">
                         <Button color="bg-black" text={"Next"} onClick={()=>setFs(fs+1)} />
