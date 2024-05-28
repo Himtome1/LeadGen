@@ -20,16 +20,13 @@ const vehicleTypes = [
 ]
 
 const fields = [
-    {name: "When were you born?", subHeading:"Please enter your date of brith", type: "date", value: "contact.dob", onChange: "setContact"},
-    {name: "How soon do you need financing?",  subHeading:"Please select below",  type: "text", value: "contact.financing", onChange: "setContact"},
-    {name: "What is your name?", subHeading:"Please enter your full legal name", type: "text", value: "contact.name", onChange: "setContact"},
-    {name: "Email", type: "email", value: "contact.email", onChange: "setContact"},
-    {name: "Phone Number", type: "tel", value: "contact.phoneNumber", onChange: "setContact"},
-    {name: "Address", type: "text", value: "contact.address", onChange: "setContact"},
-    {name: "City", type: "text", value: "contact.city", onChange: "setContact"},
-    {name: "State", type: "text", value: "contact.state", onChange: "setContact"},
-    {name: "Zip Code", type: "text", value: "contact.zipCode", onChange: "setContact"},
-
+    {name: "How old are you?", subHeading: "Select an option", options: ["Under 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65 or older"]},
+   {name: "When would you like to start?", subHeading: "Select a date to start riding", options: ["Today", "Tomorrow", "This weekend", "Next week", "Next month"]},
+   {name: "What is your employment status?", subHeading: "Select from below", options: ["Employed", "Unemployed", "Student", "Retired", "Other"]},
+   {name: "How long have you been employed?", subHeading: "Select an option", options: ["Less than 6 months", "6 months - 1 year", "1-2 years", "2-3 years", "3-4 years", "4-5 years", "5 years or more"]},
+   {name: "Are you self-employed?", subHeading: "Select an option", options: ["Yes", "No"]},
+   {name: "What is your annual income?", subHeading: "Select an option", options: ["Under $20,000", "$20,000-$40,000", "$40,000-$60,000", "$60,000-$80,000", "$80,000-$100,000", "Over $100,000"]},
+  
 ]
 
 export function Step1(){
@@ -75,23 +72,18 @@ export function Step3({ contact, setContact }) {
         <div className='w-full h-screen bg-gray-100'>
             <div className='flex flex-col items-center justify-center h-full'>
                 <div key={i} className='w-2/3 h-1/2 flex flex-col items-center justify-center'>
-                    <div className="flex flex-col items-center ">
+                    <div className="flex flex-col justify-center items-center ">
                         <label className='text-2xl font-semibold'>{fields[fs].name}</label>
                         <label className='text-md text-gray-400 font-semibold mb-[100px]'>{fields[fs].subHeading}</label>
                     </div>
-                       {fs!=1? <input
-                                className='w-[300px] h-10 border border-gray-300 rounded-md px-2'
-                                type={fields[fs].type}
-                                value={contact[fields[fs].name] || ''}
-                                onChange={(e) => setContact({ ...contact, [fields[fs].name]: e.target.value })}
-                        />:<div className="h-full  w-full flex-col flex">
-                            <div className="w-full h-full flex items-center flex-col space-y-5">
-                                <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "Today"})} > Today</motion.button>
-                                <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "1-3 Months"})} > 1-3 Months</motion.button>
-                                <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: "3+ Months"})} > 3+ Months</motion.button>
+                     <div className="w-full h-full space-y-5 flex flex-col items-center">
+                    {fields[fs].options.map((x)=>{
+                        return(
+                        <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: x})} >{x}</motion.button>)
+                    })}
+                     </div>
 
-                            </div>
-                            </div>}
+                           
                     </div>
                     <div className="w-full h-1/3 items-center flex justify-center ">
                         <Button color="bg-black" text={"Next"} onClick={()=>setFs(fs+1)} />
