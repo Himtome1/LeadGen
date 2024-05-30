@@ -6,6 +6,7 @@ import { IoBoat } from "react-icons/io5"
 import { useState } from "react"
 import {motion, AnimatePresence} from 'framer-motion'
 import { Button } from '@/components/UIComponents'
+import ContactForm from '@/components/contactForm'
 
 const vehicleTypes = [
     {name: "Street Bike", image: <FaMotorcycle size={30}/>},
@@ -70,17 +71,19 @@ export function Step3({ contact, setContact }) {
     const [fs, setFs] = useState(0)
     return (
         <div className='w-full h-screen bg-gray-100'>
-            <div className='flex flex-col items-center justify-center h-full'>
+          { fs<=5? <div className='flex flex-col items-center justify-center h-full'>
                 <div key={i} className='w-2/3 h-1/2 flex flex-col items-center justify-center'>
-                    <div className="flex flex-col justify-center items-center ">
+                  <div className="flex flex-col justify-center items-center ">
                         <label className='text-2xl font-semibold'>{fields[fs].name}</label>
                         <label className='text-md text-gray-400 font-semibold mb-[100px]'>{fields[fs].subHeading}</label>
                     </div>
                      <div className="w-full h-full space-y-5 flex flex-col items-center">
-                    {fields[fs].options.map((x)=>{
+                
+                    { fields[fs].options.map((x)=>{
+                        console.log(fs)
                         return(
                         <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: x})} >{x}</motion.button>)
-                    })}
+                    }) }
                      </div>
 
                            
@@ -89,7 +92,7 @@ export function Step3({ contact, setContact }) {
                         <Button color="bg-black" text={"Next"} onClick={()=>setFs(fs+1)} />
                     </div>
              
-            </div>
+            </div> : <ContactForm applicationInfo={contact}/>}
             
         </div>
     );
