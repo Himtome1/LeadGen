@@ -7,6 +7,7 @@ import { useState } from "react"
 import {motion, AnimatePresence} from 'framer-motion'
 import { Button } from '@/components/UIComponents'
 import ContactForm from '@/components/contactForm'
+import { Input, InputSmall, PhoneInput } from '@/components/UIComponents'
 
 const vehicleTypes = [
     {name: "Street Bike", image: <FaMotorcycle size={30}/>},
@@ -20,16 +21,7 @@ const vehicleTypes = [
 
 ]
 
-const fields = [
-    {name: "How old are you?", subHeading: "Select an option", options: ["Under 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65 or older"]},
-   {name: "When would you like to start?", subHeading: "Select a date to start riding", options: ["Today", "Tomorrow", "This weekend", "Next week", "Next month"]},
-   {name: "What is your phone number?", subHeading: "Please enter below"},
-   {name: "What is your employment status?", subHeading: "Select from below", options: ["Employed", "Unemployed", "Student", "Retired", "Other"]},
-   {name: "How long have you been employed?", subHeading: "Select an option", options: ["Less than 6 months", "6 months - 1 year", "1-2 years", "2-3 years", "3-4 years", "4-5 years", "5 years or more"]},
-   {name: "Are you self-employed?", subHeading: "Select an option", options: ["Yes", "No"]},
-   {name: "What is your annual income?", subHeading: "Select an option", options: ["Under $20,000", "$20,000-$40,000", "$40,000-$60,000", "$60,000-$80,000", "$80,000-$100,000", "Over $100,000"]},
-  
-]
+const fields = []
 
 export function Step1(){
     return(
@@ -69,37 +61,14 @@ export function Step2({setVehicleType, selectedVehicleType}){
 }
 var i = 0
 export function Step3({ contact, setContact }) {
-    const [fs, setFs] = useState(0)
-    return (
-        <div className='w-full h-screen bg-gray-100'>
-          { fs<=5? <div className='flex flex-col items-center justify-center h-full'>
-                <div key={i} className='w-2/3 h-1/2 flex flex-col items-center justify-center'>
-                  <div className="flex flex-col justify-center items-center ">
-                        <label className='text-2xl font-semibold'>{fields[fs].name}</label>
-                        <label className='text-md text-gray-400 font-semibold mb-[100px]'>{fields[fs].subHeading}</label>
-                    </div>
-                     <div className="w-full h-full space-y-5 flex flex-col items-center">
-
-                    { fields[fs].options?fields[fs].options.map((x)=>{
-                        
-                        return(
-                        <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.95}} className="w-2/3 h-[100px] focus:bg-lime-500 focus:border-[5px] bg-black text-white font-extrabold text-xl rounded-xl" onClick={()=>setContact({...contact, [fields[fs].name]: x})} >{x}</motion.button>)
-                    }):
-                    <div className="w-full flex items-center justify-center space-x-2">
-                        <input className="w-[100px] h-[50px] border-2 border-gray-300 rounded-lg p-2 text-center" placeholder={"XXX"} onChange={(e)=>{setContact({...contact, phoneNumber1: e.target.value})}}/>
-                        <input className="w-[100px] h-[50px] border-2 border-gray-300 rounded-lg p-2 text-center" placeholder={"XXX"} onChange={(e)=>{setContact({...contact, phoneNumber2: e.target.value})}}/>
-                        <input className="w-[100px] h-[50px] border-2 border-gray-300 rounded-lg p-2 text-center" placeholder={"XXXX"} onChange={(e)=>{setContact({...contact, phoneNumber3: e.target.value})}}/>
-                        </div>}
-                     </div>
-
-                           
-                    </div>
-                    <div className="w-full h-1/3 items-center flex justify-center ">
-                        <Button disabled={(contact.phoneNumber1 == (null || "") || contact.phoneNumber2 == (null || "") || contact.phoneNumber3 == (null || ""))&&} color="bg-black" text={"Next"} onClick={()=>{setFs(fs+1), console.log(fs)}} />
-                    </div>
-             
-            </div> : <ContactForm applicationInfo={contact}/>}
-            
-        </div>
-    );
+   return(
+    <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
+    <div>
+        <h1 className="text-3xl font-bold pb-10 text-gray-700">What is your phone number?</h1>
+    </div>
+  
+        <PhoneInput/>
+       
+</form>
+   )
 }

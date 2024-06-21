@@ -40,7 +40,7 @@ export default function Page(){
                     {display()}
                 </div>
                 <div className='w-full h-1/5 flex items-center justify-center'>
-                    {counter!==3?<Button disabled={vehicleType==""&&counter==2?true:false} text={'Next'} onClick={()=>{counter==3?setCounter(1):setCounter(counter+1)}} color={"bg-black hover:bg-gray-800"}/>:null}
+                  <Button disabled={vehicleType==""&&counter==2?true:false} text={'Next'} onClick={()=>{counter==3?setCounter(1):setCounter(counter+1)}} color={"bg-black hover:bg-gray-800"}/>
                 </div>
             </div>
             <div className='w-1/3 h-full bg-green-400 relative'>
