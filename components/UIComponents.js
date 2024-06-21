@@ -1,7 +1,6 @@
 "use client"
 
 import {useState, useRef, useEffect} from "react"
-const alphabetSpecials = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-"
 
 export function Button({onClick, text, color, disabled}) {
   var dis = true
@@ -11,8 +10,6 @@ export function Button({onClick, text, color, disabled}) {
     c= color
   }
 
-  
-    
   return <button disabled={dis}className={`${c} rounded-lg  font-bold text-white` } style={{width:"175px", height:"50px"}} onClick={onClick}>{text}</button>
 }
 
@@ -26,60 +23,69 @@ export function InputSmall({onChange, placeholder, value, ...props}) {
     return <input disabled={true} type="tel" className="border-gray-300 text-center w-[50px] rounded-lg" placeholder={placeholder} value={value} onChange={onChange} />
   }
 
-export function PhoneInput () {
-  const [phone, setPhone] = useState([])
-  const inputRef = useRef(null)
-  const adjustPhone = (e,i) => {
-    var temp = [...phone]
-    temp[i] = e.target.value
-    setPhone(temp)
-  }
+export function PhoneInput({onComplete, variable1}){
+  const [phone, setPhone] = useState(Array(10).fill("")) // Determines the amount of digits in phone number
+  const arrayOfRefs = [Array(10).fill(useRef())] // Array that is populated with refs for each input field in the phone number in the map function below
   useEffect(() => {
-    document.addEventListener('keydown', function(event) {
-    var temp = phone
-    temp.push(event.key)
-    setPhone(temp)
-    console.log(phone)
-  })
-  return () => {
-    document.removeEventListener('keydown', function(event) {
-    var temp = phone
-    temp.push(event.key)
-    setPhone(temp)
-    console.log(phone)
-  })
-  }
-}, []);
-  return(
-    
-    <div className="flex space-x-2 text-center justify-center">
-      
-      <span className={alphabetSpecials.includes(phone[0])||alphabetSpecials.includes(phone[1])||alphabetSpecials.includes(phone[2])?"p-2 rounded-xl border border-red-200":"p-2 rounded-xl border border-gray-200"}>
-        {[0,1,2].map((i) => {
-          return <NumberInput value = {phone[i]||"___"} onChange={(e)=>adjustPhone(e,i)}/>
-        })}
-      </span>
-      <span className="flex items-center">
-        <p>
-          {" "}
-        </p>
-      </span>
-      <span className={phone.length >= 6 && !alphabetSpecials.includes(phone[4] || phone[5] || phone [6])? "p-2 rounded-xl border border-green-200":alphabetSpecials.includes(phone[4] || phone[5] || phone [6])?"p-2 rounded-xl border border-red-200":"p-2 rounded-xl border border-gray-200"}>
-      {[3,4,5].map((i) => {
-          return <NumberInput value = {phone[i]||"___"} onChange={(e)=>adjustPhone(e,i)}/>
-        })}
-      </span>
-      <span className="flex items-center">
-        <p>
-          {" "}
-        </p>
-      </span>
-      <span className="p-2 rounded-xl border border-gray-200">
-      {[6,7,8,9].map((i) => {
-          return <NumberInput value = {phone[i]||"___"} onChange={(e)=>adjustPhone(e,i)}/>
-        })}
-      </span>
-    </div>
-    )
-}
+    if(!phone.includes("")){
+     console.log(variable1)
+     const newArray = [...variable1]
+     newArray[2] = false
+     onComplete(newArray)
+    }
+    else{
+      const newArray = [...variable1]
+      newArray[2] = true
+      onComplete(newArray)
+    }
 
+
+}, [phone])
+    
+return(
+  <div className="flex space-x-1">
+   {phone.map((p, index) => {
+    arrayOfRefs[index] = useRef() //populating the array with refs for each input field
+    return(
+      <div className="flex items-center">
+        <input key={index} ref={arrayOfRefs[index]} autoFocus = {index==0} maxLength={1} className=" border-gray-300 border text-center w-[50px] h-[50px] rounded"  value={p}
+
+        onKeyDown={(e) => { 
+          if (e.key == "Backspace"){
+              const newPhone = [...phone] //shallow copy of phone number
+              newPhone[index] = "" //sets the appropriate entry in the copied phone number to an empty string
+              setPhone(newPhone) //sets the phone number to the modified copied phone number
+              if (index > 0){
+                arrayOfRefs[index-1].current.focus() //focuses on the previous input field if the index is greater than 0
+            }
+          }
+          if (e.key == "ArrowRight" && index < 9){ //focuses on the next input field if the index is less than 9
+            arrayOfRefs[index+1].current.focus()
+          }
+          if (e.key == "ArrowLeft" && index > 0){ //focuses on the previous input field if the index is greater than 0
+            arrayOfRefs[index-1].current.focus()
+          }
+          if (/^[0-9]+$/.test(e.key)){ //checks if the key pressed is a number
+            if (index < 10){ //checks if the index is less than 10
+              const newPhone = [...phone] //shallow copy of phone number
+              newPhone[index] = e.key //sets the appropriate entry in the copied phone number to the key pressed
+              setPhone(newPhone) //sets the phone number to the modified copied phone number
+              
+            }
+            if (index < 9){
+              arrayOfRefs[index+1].current.focus() //focuses on the next input field if the index is less than 9, as not to run out of input fields
+            }
+           
+          }
+          else null
+        }}
+       />
+       { 
+        index == 2 || index == 5 ? <span className="text-2xl"><pre> - </pre></span> : null //adds a dash after the third and sixth input field
+       }
+      </div>
+    )
+   })}
+  </div>
+)
+}

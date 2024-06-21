@@ -60,15 +60,20 @@ export function Step2({setVehicleType, selectedVehicleType}){
     )
 }
 var i = 0
-export function Step3({ contact, setContact }) {
+export function Step3({onComplete, variable1}) {
+
    return(
     <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
     <div>
         <h1 className="text-3xl font-bold pb-10 text-gray-700">What is your phone number?</h1>
     </div>
   
-        <PhoneInput/>
+        <PhoneInput onComplete={onComplete} variable1={variable1}/>
        
 </form>
    )
+}
+
+export function Step4({onComplete, variable1}) {
+    
 }

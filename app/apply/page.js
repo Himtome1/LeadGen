@@ -10,9 +10,12 @@ export default function Page(){
     const [counter, setCounter] = useState(1)
     const [vehicleType, setVehicleType] = useState("")
     const [contact, setContact] = useState("")
+    const [disabledArray, setDisabledArray] = useState([false, true, true, true, true, true, true, true, true, true])
 
     useEffect(()=>{
-        console.log(vehicleType)
+        if (vehicleType != ""){
+            setDisabledArray([false, false, true])
+        }
     },[vehicleType])
 
     useEffect(()=>{
@@ -27,7 +30,7 @@ export default function Page(){
             case 2:
                 return <Step2 selectedVehicleType={vehicleType} setVehicleType={setVehicleType}/>
             case 3:
-                return <Step3 setContact={setContact} contact={contact}/>
+                return <Step3 onComplete={setDisabledArray} variable1={disabledArray}/>
             default:
                 return <h1>Step 1</h1>
         }
@@ -40,7 +43,7 @@ export default function Page(){
                     {display()}
                 </div>
                 <div className='w-full h-1/5 flex items-center justify-center'>
-                  <Button disabled={vehicleType==""&&counter==2?true:false} text={'Next'} onClick={()=>{counter==3?setCounter(1):setCounter(counter+1)}} color={"bg-black hover:bg-gray-800"}/>
+                  <Button disabled={disabledArray[counter-1]} text={'Next'} onClick={()=>{counter==3?setCounter(1):setCounter(counter+1)}} color={"bg-black hover:bg-gray-800"}/>
                 </div>
             </div>
             <div className='w-1/3 h-full bg-green-400 relative'>
