@@ -7,7 +7,7 @@ import { useState } from "react"
 import {motion, AnimatePresence} from 'framer-motion'
 import { Button } from '@/components/UIComponents'
 import ContactForm from '@/components/contactForm'
-import { Input, InputSmall, PhoneInput } from '@/components/UIComponents'
+import { Input, InputSmall, PhoneInput, OTPInput } from '@/components/UIComponents'
 
 const vehicleTypes = [
     {name: "Street Bike", image: <FaMotorcycle size={30}/>},
@@ -60,20 +60,39 @@ export function Step2({setVehicleType, selectedVehicleType}){
     )
 }
 var i = 0
-export function Step3({onComplete, variable1}) {
+export function Step3({onComplete, variable1, setNumber, onEnter}) {
 
    return(
     <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
     <div>
         <h1 className="text-3xl font-bold pb-10 text-gray-700">What is your phone number?</h1>
     </div>
-  
-        <PhoneInput onComplete={onComplete} variable1={variable1}/>
-       
-</form>
+        <PhoneInput onComplete={onComplete} variable1={variable1} setNumber={setNumber} onEnter={onEnter}/>
+    </form>
    )
 }
 
-export function Step4({onComplete, variable1}) {
-    
+export function Step4({onComplete, variable1, number, generatedOTP, setReceivedOTP }) {
+    return(
+        <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
+            <div className="flex flex-col items-center">
+                <h1 className="text-1xl font-bold pb-10 text-gray-700">To confirm your phone number we sent a one time passcode to +{number[0]} {`(${number.slice(1,4)}) `}{number.slice(4,7)}-{number.slice(7-11)}</h1>
+                <p className="text-gray-500">Please enter the 4 digit code</p>
+            </div>
+            <OTPInput onComplete={onComplete} variable1={variable1} setReceivedOTP={setReceivedOTP} generatedOTP={generatedOTP}/>
+        </form>
+    )
+}
+
+export function Step5() {
+    return(
+        <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
+    <div>
+        <h1 className="text-3xl font-bold pb-10 text-gray-700">What is your name?</h1>
+        <p className="text-gray-500">First Name</p>
+        <p className="text-gray-500">Last Name</p>
+    </div>
+       
+    </form>
+    )
 }
