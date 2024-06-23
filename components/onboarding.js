@@ -413,23 +413,9 @@ export function Step16({vehicleType, phoneNumber, firstName, lastName, budget, D
 export function Step17(){
     return(
         <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">       
-            <h1 className="text-gray-700 text-3xl font-extrabold">Congratulations you have successfully completed your application</h1>
-            <ul className="text-sm">
-                <li>Desired Vehicle: <span className="font-bold">{vehicleType}</span></li>
-                <li>Phone Number: <span className="font-bold">{phoneNumber}</span></li>
-                <li>Name: <span className="font-bold">{firstName} {lastName}</span></li>
-                <li>Monthly Budget: <span className="font-bold">$ {budget}</span></li>
-                <li>Date of Birth: <span className="font-bold">{DOB}</span></li>
-                <li>Address: <span className="font-bold">{address.address}, {address.city}, {address.province}, {address.postalCode}</span></li>
-                <li>Home Ownership: <span className="font-bold">{ownHome == "mortgage"?"Home Owner":"Renter"}</span></li>
-                <li>Monthly Housing Expense: <span className="font-bold">$ {monthlyPayment}</span></li>
-                <li>Time at Address: <span className="font-bold">{timeAtAddress.years} years, {timeAtAddress.months} months</span></li>
-                <li>Employment Status: <span className="font-bold">{employmentStatus}</span></li>
-                <li>Place of Employment: <span className="font-bold">{employmentDetails.employer}</span></li>
-                <li>Position: <span className="font-bold">{employmentDetails.position}</span></li>
-                <li>Time at Place of Employment: <span className="font-bold">{employmentDetails.duration} years</span></li>
-                <li>Monthly Income: <span className="font-bold">$ {monthlyIncome}</span></li>
-            </ul>
+            <h1 className="text-gray-700 text-3xl font-extrabold">Congratulations!</h1>
+            <h2 className="text-gray-600 text-xl font-bold">You have successfully completed your application</h2>
+            <p className="text-gray-500">An associate will be in touch shortly to discuss the next steps.</p>
         </div>
     )
 }

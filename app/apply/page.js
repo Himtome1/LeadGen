@@ -1,6 +1,6 @@
 "use client"
 import {motion, AnimatePresence} from 'framer-motion'
-import {Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10, Step11, Step12, Step13, Step14, Step15, Step16} from '@/components/onboarding.js'
+import {Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10, Step11, Step12, Step13, Step14, Step15, Step16, Step17} from '@/components/onboarding.js'
 import { Button } from '@/components/UIComponents'
 import {useState, useEffect, use} from 'react'
 import Image from 'next/image'
@@ -212,12 +212,14 @@ export default function Page(){
                 return <Step15 setMonthlyIncome={setMonthlyIncome}/>
             case 16:
                 return <Step16 vehicleType={vehicleType} phoneNumber={number} firstName={firstName} lastName={lastName} budget={budget} DOB = {DOB} address={address} ownHome={ownHome} monthlyPayment={monthlyPayment} timeAtAddress={timeAtAddress} employmentStatus={employmentStatus} employmentDetails={employmentDetails} monthlyIncome={monthlyIncome}/>
+            case 17:
+                return <Step17/>
         }
     }
 
     const handleFinalSubmit = async() => {
         console.log(address)
-        await SendMessage("12506343068", "Hello! A new application has been submitted. Please check your email or the database for more information.")
+        await SendMessage("17787008157", "Hello! A new application has been submitted. Please check your email or the database for more information.")
         await SendMessage(number, "Congratulations! Your application has been submitted successfully. A representative will be in touch with you shortly to discuss the next steps.")
         /*await SaveLead({
             vehicleType: vehicleType,
@@ -251,8 +253,7 @@ export default function Page(){
             employmentDetails: employmentDetails,
             monthlyIncome: monthlyIncome
         })
-        router.push('/')
-        setCounter(1)
+        setCounter(17)
     }
 
     const onClickHandler = () => {
@@ -265,7 +266,7 @@ export default function Page(){
         if(counter==13 && employmentStatus != "Employed"){
             setCounter(counter+2)
         }
-        else if(counter != 16){
+        else if(counter != 16 || counter != 17){
             setCounter(counter+1)
         }
     }
@@ -275,16 +276,16 @@ export default function Page(){
         <div className='w-screen h-screen bg-gray-100 flex relative'>
             <div className='w-2/3 h-full z-30'>
          
-                <ProgressBar currentStep={counter} totalSteps={16}/>
+                <ProgressBar currentStep={counter} totalSteps={17}/>
     
                 <div className='w-full h-4/5'>
                     {display()}
                 </div>
                 <div className={`w-full  h-1/5 flex items-center justify-center space-x-5`}>
-                  <div className={`${(counter<=2) ? "invisible":"visible"}`}>
+                  <div className={`${(counter<=2 || counter==17) ? "invisible":"visible"}`}>
                     <Button text={'Back'} onClick={()=>{setCounter(counter-1)}} disabled={false} color={"bg-black hover:bg-gray-800"}/>
                   </div>
-                  <div className={`${(counter==4 || counter==10) ? "invisible":"visible"}`}>
+                  <div className={`${(counter==4 || counter==10 || counter==17) ? "invisible":"visible"}`}>
                     <Button disabled={disabledArray[counter-1]} text={counter==16?'Confirm':counter==15?'Submit':'Next'} onClick={()=>{onClickHandler()}} color={"bg-black hover:bg-gray-800"}/>
                   </div>
                 </div>
