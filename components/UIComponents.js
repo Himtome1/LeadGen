@@ -16,11 +16,34 @@ export function Button({onClick, text, color, disabled}) {
 export function Input({onChange, placeholder, value, ...props}) {
   return <input {...props} className="border-2 border-gray-300 w-[350px] rounded-lg p-2" placeholder={placeholder} value={value} onChange={onChange} />
 }
-export function InputSmall({onChange, placeholder, value, ...props}) {
-    return <input {...props} className="border-2 border-gray-300 text-center w-[150px] rounded-lg p-2" placeholder={placeholder} value={value} onChange={onChange} />
+export function InputSmall({onChange, placeholder, value, pattern}) {
+    return <input pattern={pattern || null} className="border-2 border-gray-300 text-center w-[150px] rounded-lg p-2" placeholder={placeholder} value={value} onChange={onChange} />
+  }
+  export function InputEmail({onChange, placeholder, value}) {
+    return <input type="email" className="border-2 border-gray-300 text-sm text-left w-[200px] rounded-lg p-2" placeholder={placeholder} value={value} onChange={onChange} />
   }
   export function NumberInput({onChange, placeholder, value}) {
-    return <input disabled={true} type="tel" className="border-gray-300 text-center w-[50px] rounded-lg" placeholder={placeholder} value={value} onChange={onChange} />
+    return <input  disabled={true} type="tel" className="border-gray-300 text-center w-[50px] rounded-lg" placeholder={placeholder} value={value} onChange={onChange} />
+  }
+
+  export function DateInput({onChange, placeholder, value}) {
+    return <input  type="date" className="border-gray-300 border h-[40px] p-[5px] text-center w-[150px] text-sm rounded-lg" placeholder={placeholder} value={value} onChange={onChange} />
+  }
+
+  export function AddressInput({onChange, placeholder, value, label, width}) {
+    var localWidth = ""
+    if(width != undefined){
+      localWidth = `w-[${width}px]`
+    }
+    else{
+      var localWidth = "w-[150px]"
+    }
+    return(
+    <div className="relative flex items-center justify-center space-x-2 p-2">
+      <p className="text-gray-600 text-xs" >{label}</p>
+      <input  className={`border-gray-300 border h-[40px] p-[5px] text-sm text-left ${localWidth} text-sm rounded-lg`} placeholder={placeholder} value={value} onChange={onChange} />
+    </div>
+    )
   }
 
 export function PhoneInput({onComplete, variable1, setNumber, onEnter}){
@@ -168,3 +191,33 @@ return(
   </div>
 )
 }
+
+export function Mosaic({data, onClick, columns}){
+  const [selected, setSelected] = useState(null)
+  const columnsCSS = `grid-cols-${columns}`
+  return(
+    <div className={`grid ${columnsCSS} gap-3`}>
+      {data.map((amount, index)=>{
+        var border = ""
+        if (amount == selected){
+          border = "border-lime-400"
+        }
+        return(
+          <button key={index} className={`flex items-center border text-center ${border} justify-center w-[125px] h-[125px] bg-white rounded-lg shadow-md`} onClick={()=>{onClick(amount), setSelected(amount)}}>
+            <p>{amount}</p>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+export function ProgressBar({currentStep, totalSteps}){
+  const progress = (currentStep/totalSteps)*100
+  return(
+    <div className="relative h-2 w-full bg-gray-300 rounded-lg">
+      <div className="absolute h-2 bg-black rounded-lg" style={{width:`${progress}%`}}></div>
+    </div>
+  )
+}
+
