@@ -10,9 +10,9 @@ import { ProgressBar } from '@/components/UIComponents'
 
 export default function Page(){
 
-    const [counter, setCounter] = useState(5)
+    const [counter, setCounter] = useState(1)
     const [vehicleType, setVehicleType] = useState("")
-    const [disabledArray, setDisabledArray] = useState([false, true, true, true, true, true, true, true, true, true, true, true])
+    const [disabledArray, setDisabledArray] = useState([false, true, true, true, true, true, true, true, true, true, true, true, true, true, true])
     const [number, setNumber] = useState("")
     const [generatedOTP,setGeneratedOTP] = useState(Math.floor(1000 + Math.random() * 8999))
     const [receivedOTP, setReceivedOTP] = useState(0)
@@ -97,18 +97,19 @@ export default function Page(){
             newArray[9] = false
             setCounter(counter+1)
         }
-        if(monthlyPayment != ""){
+    },[ownHome])
+    useEffect(()=>{
+        if (monthlyPayment != ""){
             const newArray = [...disabledArray]
             newArray[10] = false
             setDisabledArray(newArray)
         }
-        if(monthlyPayment == ""){
+        if (monthlyPayment == ""){
             const newArray = [...disabledArray]
             newArray[10] = true
             setDisabledArray(newArray)
         }
-       
-    },[ownHome, monthlyPayment])
+    },[monthlyPayment])
 
     useEffect(()=>{
         if(timeAtAddress != ""){
@@ -146,7 +147,7 @@ export default function Page(){
             case 10:
                 return <Step10 setOwnHome={setOwnHome} />
             case 11:
-                return <Step11 setMonthlyPayment={setMonthlyPayment}/>
+                return <Step11 setMonthlyPayment={setMonthlyPayment} ownHome={ownHome}/>
             case 12:
                 return <Step12 setTimeAtAddress={setTimeAtAddress}/>
         }

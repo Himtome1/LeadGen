@@ -194,7 +194,7 @@ return(
 
 export function Mosaic({data, onClick, columns}){
   const [selected, setSelected] = useState(null)
-  const columnsCSS = `grid-cols-${columns}`
+  const columnsCSS = `grid-cols-5`
   return(
     <div className={`grid ${columnsCSS} gap-3`}>
       {data.map((amount, index)=>{

@@ -24,7 +24,7 @@ export function Step1(){
     return(
         <div className='w-full h-screen bg-gray-100'>
             <div className='flex flex-col items-center justify-center h-full'>
-                <h1 className='text-3xl font-bold'>Ready to start riding?</h1>
+                <h1 className='text-3xl font-extrabold'>Ready to start riding?</h1>
                 <p className='text-gray-500'>Let's get you started</p>
             </div>
         </div>
@@ -61,7 +61,7 @@ export function Step3({onComplete, variable1, setNumber, onEnter}) {
    return(
     <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
     <div>
-        <h1 className="text-3xl font-bold pb-10 text-gray-700">What is your phone number?</h1>
+        <h1 className="text-2xl font-extrabold pb-10 text-gray-700">What is your phone number?</h1>
     </div>
         <PhoneInput onComplete={onComplete} variable1={variable1} setNumber={setNumber} onEnter={onEnter}/>
     </form>
@@ -72,8 +72,8 @@ export function Step4({onComplete, variable1, number, generatedOTP, setReceivedO
     return(
         <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
             <div className="flex flex-col items-center">
-                <h1 className="text-2xl font-bold pb-10 text-gray-700">To confirm your phone number we sent a one time passcode to +{number[0]} {`(${number.slice(1,4)}) `}{number.slice(4,7)}-{number.slice(7-11)}</h1>
-                <p className="text-gray-500">Please enter the 4 digit code</p>
+                <h1 className="text-2xl font-extrabold pb-10 text-gray-700">Please confirm your phone number</h1>
+                <p className="text-gray-600 text-sm font-bold">Enter the 4 digit code that was sent to +{number[0]} {`(${number.slice(1,4)}) `}{number.slice(4,7)}-{number.slice(7-11)}</p>
             </div>
             <OTPInput onComplete={onComplete} variable1={variable1} setReceivedOTP={setReceivedOTP} generatedOTP={generatedOTP}/>
         </form>
@@ -110,10 +110,10 @@ export function Step6({setEmail, firstName}){
     return(
         <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
             <div className="flex flex-col items-center">
-                <p className="text-gray-700 text-2xl">What is your email, {firstName}?</p> 
+                <p className="text-gray-700 text-2xl font-extrabold">What is your email, {firstName}?</p> 
                 <div className="w-[250px] text-center mt-5 mb-5">
                     <p className="text-gray-500 text-sm">If you qualify, we will immediately let you know through email with your pre-approval offer.</p>
-                    <p className="text-gray-500 mt-2 text-sm">Please enter your email below.</p>
+                    <p className="text-gray-500 mt-2 text-sm font-bold">Please enter your email below.</p>
                 </div>
                 <InputEmail placeholder={"jsmith@email.com"} onChange={(e)=>setEmail(e.target.value)}/>
             </div>
@@ -126,8 +126,8 @@ export function Step7({setBudget, budget}){
     return(
         <div className="w-full h-screen bg-white items-center justify-evenly flex flex-col pt-20 pb-[150px]">
             
-                <div className="flex flex-col items-center space-y-2">
-                    <p className="text-gray-700 text-xl">What is your monthly budget for financing?</p>
+                <div className="flex flex-col items-center space-y-5">
+                    <p className="text-gray-700 text-2xl font-extrabold">What is your monthly budget for financing?</p>
                     <div className="w-[250px] text-center">
                         <p className="text-gray-500 text-sm">This information will let us match you with the best possible interest rate for your vehicle of choosing.</p>
                     </div>
@@ -139,11 +139,10 @@ export function Step7({setBudget, budget}){
     )
 }
 export function Step8({setDOB}){
-    const BUDGET_OPTIONS = ['100-300', '300-500', '500-700', '700+', 'I am not sure yet.']
     return(
         <div className="w-full h-screen bg-white items-center justify-evenly flex flex-col pt-20 pb-[150px]">
             
-                <div className="flex flex-col items-center space-y-2">
+                <div className="flex flex-col items-center space-y-5">
                     <p className="text-gray-700 text-2xl font-extrabold">When is your date of birth?</p>
                     <div className="w-[250px] text-center">
                         <p className="text-gray-500 text-sm">This information is stored to accelerate your application processing.</p>
@@ -163,7 +162,7 @@ export function Step9({setAddress}){
     },[localAddress])
     return(
         <div className="w-full h-screen bg-white items-center justify-evenly flex flex-col pt-20 pb-[150px]">
-                <div className="flex flex-col items-center space-y-2">
+                <div className="flex flex-col items-center space-y-5">
                     <p className="text-gray-700 font-extrabold text-2xl">What's your address?</p>
                     <div className="w-[250px] text-center">
                         <p className="text-gray-500 text-sm">This information is used to accelerate application processing times.</p>
@@ -212,32 +211,32 @@ export function Step10({setOwnHome}){
     return( 
         <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
           
-                <h1 className="text-gray-700 text-xl">Do you own your home?</h1>
+                <h1 className="text-gray-700 text-2xl font-extrabold">Do you own your home?</h1>
                 <div className="flex space-x-5">
-                    <Button text={"Yes"} onClick={()=>setOwnHome(true)} color={"bg-black hover:bg-gray-900"}/>
-                    <Button text={"No"} onClick={()=>setOwnHome(false)} color={"bg-black hover:bg-gray-900"}/>
+                    <Button text={"Yes"} onClick={()=>setOwnHome("mortgage")} color={"bg-black hover:bg-gray-900"}/>
+                    <Button text={"No"} onClick={()=>setOwnHome("rent")} color={"bg-black hover:bg-gray-900"}/>
                 </div>
            
         </div>
     )
 }
-export function Step11({setMonthlyPayment}){
+export function Step11({setMonthlyPayment, ownHome}){
     const [warning, setWarning] = useState(false)
     return(
         <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
             
-                    <div className="flex flex-col h-1/2 justify-end space-y-2 relative">
-                        <h1 className="text-gray-700 text-xl">What is your current monthly payment for housing?</h1>
+                    <div className="flex flex-col h-1/2 justify-end items-center space-y-5 relative">
+                        <h1 className="text-gray-700 text-2xl font-extrabold">How much is your {ownHome} each month?</h1>
+                        <p className="text-gray-600 text-sm font-bold">Estimates are fine if you are not sure of the exact amount.</p>
                         <div className="flex space-x-5 items-center justify-center pl-[68px]">
                             <p className="text-sm text-gray-700">$</p>
                             <InputSmall placeholder={100} onChange={(e)=>{
                                 if(/^[0-9]*$/.test(e.target.value) == false){
                                     setWarning(true)
-                                    return e.preventDefault()
+                                    return 
                                 }
                                 setWarning(false)
                                 setMonthlyPayment(e.target.value)
-                                
                                 }}/>
                             
                             <p className="text-sm text-gray-700">per month</p>
@@ -265,8 +264,9 @@ export function Step12({setTimeAtAddress}){
     return(
         <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
             
-        <div className="flex flex-col h-1/2 justify-end space-y-2 relative">
-            <h1 className="text-gray-700 text-xl">How long have you been at your current address for?</h1>
+        <div className="flex flex-col h-1/2 justify-end space-y-5 relative items-center">
+            <h1 className="text-gray-700 text-2xl font-extrabold">How long have you been at your current address for?</h1>
+            <p className="text-gray-600 text-sm font-bold">Estimates are fine if you are not sure.</p>
             <div>
                 <div className="flex space-x-5 items-center justify-center">
                     <AddressInput label={"Years"} placeholder={"Ex. 5"} onChange={(e)=>{
