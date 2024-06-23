@@ -219,7 +219,7 @@ export default function Page(){
         console.log(address)
         await SendMessage("12506343068", "Hello! A new application has been submitted. Please check your email or the database for more information.")
         await SendMessage(number, "Congratulations! Your application has been submitted successfully. A representative will be in touch with you shortly to discuss the next steps.")
-        await SaveLead({
+        /*await SaveLead({
             vehicleType: vehicleType,
             phoneNumber: number,
             firstName: firstName,
@@ -234,7 +234,7 @@ export default function Page(){
             employmentStatus: employmentStatus,
             employmentDetails: employmentDetails,
             monthlyIncome: monthlyIncome
-        })
+        })*/
         const res = await SendEmail({
             vehicleType: vehicleType,
             phoneNumber: number,
