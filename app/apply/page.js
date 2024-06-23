@@ -5,7 +5,6 @@ import { Button } from '@/components/UIComponents'
 import {useState, useEffect, use} from 'react'
 import Image from 'next/image'
 import { SendMessage, SaveLead, SendEmail } from '@/lib/serverComponents'
-import { Send } from 'lucide'
 import { ProgressBar } from '@/components/UIComponents'
 import { useRouter } from 'next/navigation'
 
@@ -252,6 +251,8 @@ export default function Page(){
             employmentDetails: employmentDetails,
             monthlyIncome: monthlyIncome
         })
+        setCounter(1)
+        router.push('/')
     }
 
     const onClickHandler = () => {
