@@ -251,9 +251,8 @@ export default function Page(){
             employmentDetails: employmentDetails,
             monthlyIncome: monthlyIncome
         })
-        alert(res.error)
-        setCounter(1)
         router.push('/')
+        setCounter(1)
     }
 
     const onClickHandler = () => {
