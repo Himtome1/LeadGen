@@ -235,7 +235,7 @@ export default function Page(){
             employmentDetails: employmentDetails,
             monthlyIncome: monthlyIncome
         })
-        await SendEmail({
+        const res = await SendEmail({
             vehicleType: vehicleType,
             phoneNumber: number,
             firstName: firstName,
@@ -251,6 +251,7 @@ export default function Page(){
             employmentDetails: employmentDetails,
             monthlyIncome: monthlyIncome
         })
+        alert(res.error)
         setCounter(1)
         router.push('/')
     }
@@ -282,7 +283,7 @@ export default function Page(){
                 </div>
                 <div className={`w-full  h-1/5 flex items-center justify-center space-x-5`}>
                   <div className={`${(counter<=2) ? "invisible":"visible"}`}>
-                    <Button text={'Back'} onClick={()=>{setCounter(counter-1)}} color={"bg-black hover:bg-gray-800"}/>
+                    <Button text={'Back'} onClick={()=>{setCounter(counter-1)}} disabled={false} color={"bg-black hover:bg-gray-800"}/>
                   </div>
                   <div className={`${(counter==4 || counter==10) ? "invisible":"visible"}`}>
                     <Button disabled={disabledArray[counter-1]} text={counter==16?'Confirm':counter==15?'Submit':'Next'} onClick={()=>{onClickHandler()}} color={"bg-black hover:bg-gray-800"}/>
