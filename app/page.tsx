@@ -26,7 +26,7 @@ export default function Page(){
             </motion.div>
           </motion.div>
           <motion.div className="w-1/3 h-full bg-white flex items-center  justify-center">
-            <Button color={"bg-black hover:bg-lime-500 rounded"} onClick={()=>router.push("/apply")} text={"APPLY NOW"}></Button>
+            <Button disabled={false} color={"bg-black hover:bg-lime-500 rounded"} onClick={()=>router.push("/apply")} text={"APPLY NOW"}></Button>
           </motion.div>
         </motion.div>
         <motion.div className='h-4/5 bg-[url("/Dirtbike.jpeg")] bg-center xl:bg-start bg-cover flex items-end'>
@@ -110,11 +110,11 @@ Our dedicated team of loan specialists guides applicants through the process, fr
               <p>Get Approved Today!</p>
              </motion.div>
               <motion.div className='flex w-[350px] justify-between'>
-                <InputSmall onChange={()=>{}} value={null} placeholder={"First Name"}></InputSmall>
-                <InputSmall onChange={()=>{}} value={null} placeholder={"Last Name"}></InputSmall>
+                <InputSmall pattern={null} onChange={()=>{}} value={null} placeholder={"First Name"}></InputSmall>
+                <InputSmall pattern={null} onChange={()=>{}} value={null} placeholder={"Last Name"}></InputSmall>
               </motion.div>
               <Input placeholder={"Email"} onChange={()=>{}} value={null}></Input>
-              <Button color={"bg-black hover:bg-gray-900 hover:text-lime-500 rounded"} onClick={()=>router.push("/apply")} text={"APPLY NOW"}></Button>
+              <Button disabled={false} color={"bg-black hover:bg-gray-900 hover:text-lime-500 rounded"} onClick={()=>router.push("/apply")} text={"APPLY NOW"}></Button>
               </motion.div>
 
           </motion.div>

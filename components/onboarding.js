@@ -216,8 +216,8 @@ export function Step10({setOwnHome}){
           
                 <h1 className="text-gray-700 text-2xl font-extrabold">Do you own your home?</h1>
                 <div className="flex space-x-5">
-                    <Button text={"Yes"} onClick={()=>setOwnHome("mortgage")} color={"bg-black hover:bg-gray-900"}/>
-                    <Button text={"No"} onClick={()=>setOwnHome("rent")} color={"bg-black hover:bg-gray-900"}/>
+                    <Button text={"Yes"} onClick={()=>setOwnHome("mortgage")} disabled={false} color={"bg-black hover:bg-gray-900"}/>
+                    <Button text={"No"} onClick={()=>setOwnHome("rent")} disabled={false} color={"bg-black hover:bg-gray-900"}/>
                 </div>
            
         </div>
