@@ -1,15 +1,16 @@
 "use client"
 import {motion, AnimatePresence} from 'framer-motion'
-import {Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10, Step11, Step12} from '@/components/onboarding.js'
+import {Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10, Step11, Step12, Step13, Step14, Step15, Step16} from '@/components/onboarding.js'
 import { Button } from '@/components/UIComponents'
 import {useState, useEffect, use} from 'react'
 import Image from 'next/image'
-import { SendMessage } from '@/lib/serverComponents'
+import { SendMessage, SaveLead, SendEmail } from '@/lib/serverComponents'
 import { Send } from 'lucide'
 import { ProgressBar } from '@/components/UIComponents'
+import { useRouter } from 'next/navigation'
 
 export default function Page(){
-
+    const router = useRouter()
     const [counter, setCounter] = useState(1)
     const [vehicleType, setVehicleType] = useState("")
     const [disabledArray, setDisabledArray] = useState([false, true, true, true, true, true, true, true, true, true, true, true, true, true, true])
@@ -25,6 +26,9 @@ export default function Page(){
     const [ownHome, setOwnHome] = useState("na")
     const [timeAtAddress, setTimeAtAddress] = useState("")
     const [monthlyPayment, setMonthlyPayment] = useState("")
+    const [employmentStatus, setEmploymentStatus] = useState("")
+    const [employmentDetails, setEmploymentDetails] = useState({"employer": "", "position": "", "duration": ""})
+    const [monthlyIncome, setMonthlyIncome] = useState("")
 
     useEffect(()=>{
         if (vehicleType != ""){
@@ -123,6 +127,57 @@ export default function Page(){
             setDisabledArray(newArray)
         }
     },[timeAtAddress])
+
+    useEffect(()=>{
+        if(employmentStatus != ""){
+            const newArray = [...disabledArray]
+            newArray[12] = false
+            setDisabledArray(newArray)
+        }
+        if(employmentStatus == ""){
+            const newArray = [...disabledArray]
+            newArray[12] = true
+            setDisabledArray(newArray)
+        }
+    },[employmentStatus])
+
+    useEffect(()=>{
+        console.log(employmentDetails)
+        if(
+            employmentDetails.employer != "" &&
+            employmentDetails.position != "" &&
+            employmentDetails.duration != ""
+        ){
+            const newArray = [...disabledArray]
+            newArray[13] = false
+            setDisabledArray(newArray)
+        }
+        if(
+            employmentDetails.employer == "" ||
+            employmentDetails.position == "" ||
+            employmentDetails.duration == ""
+        ){
+            const newArray = [...disabledArray]
+            newArray[13] = true
+            setDisabledArray(newArray)
+        }
+    }
+    ,[employmentDetails])
+
+    useEffect(()=>{
+        if(monthlyIncome != ""){
+            const newArray = [...disabledArray]
+            newArray[14] = false
+            setDisabledArray(newArray)
+        }
+        if(monthlyIncome == ""){
+            const newArray = [...disabledArray]
+            newArray[14] = true
+            setDisabledArray(newArray)
+        }
+    }
+    ,[monthlyIncome])
+   
     
     const display = () => {
         switch(counter){
@@ -150,28 +205,87 @@ export default function Page(){
                 return <Step11 setMonthlyPayment={setMonthlyPayment} ownHome={ownHome}/>
             case 12:
                 return <Step12 setTimeAtAddress={setTimeAtAddress}/>
+            case 13:
+                return <Step13 setEmploymentStatus={setEmploymentStatus}/>
+            case 14:
+                return <Step14 setEmployemntDetails={setEmploymentDetails} employmentDetails={employmentDetails}/>
+            case 15:
+                return <Step15 setMonthlyIncome={setMonthlyIncome}/>
+            case 16:
+                return <Step16 vehicleType={vehicleType} phoneNumber={number} firstName={firstName} lastName={lastName} budget={budget} DOB = {DOB} address={address} ownHome={ownHome} monthlyPayment={monthlyPayment} timeAtAddress={timeAtAddress} employmentStatus={employmentStatus} employmentDetails={employmentDetails} monthlyIncome={monthlyIncome}/>
         }
+    }
+
+    const handleFinalSubmit = async() => {
+        console.log(address)
+        await SendMessage("12506343068", "Hello! A new application has been submitted. Please check your email or the database for more information.")
+        await SendMessage(number, "Congratulations! Your application has been submitted successfully. A representative will be in touch with you shortly to discuss the next steps.")
+        await SaveLead({
+            vehicleType: vehicleType,
+            phoneNumber: number,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            budget: budget,
+            DOB: DOB,
+            address: address,
+            ownHome: ownHome=="rent" ? false : true,
+            monthlyPayment: monthlyPayment,
+            timeAtAddress: JSON.stringify(timeAtAddress),
+            employmentStatus: employmentStatus,
+            employmentDetails: employmentDetails,
+            monthlyIncome: monthlyIncome
+        })
+        await SendEmail({
+            vehicleType: vehicleType,
+            phoneNumber: number,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            budget: budget,
+            DOB: DOB,
+            address: address,
+            ownHome: ownHome=="rent" ? false : true,
+            monthlyPayment: monthlyPayment,
+            timeAtAddress: JSON.stringify(timeAtAddress),
+            employmentStatus: employmentStatus,
+            employmentDetails: employmentDetails,
+            monthlyIncome: monthlyIncome
+        })
     }
 
     const onClickHandler = () => {
         switch(counter){
             case 3: SendMessage(number, `Thank you for your interest in financing. Your generated OTP is: ${generatedOTP}`)
+            break
+            case 16: handleFinalSubmit()
+            break
         }
-
-        setCounter(counter+1)
+        if(counter==13 && employmentStatus != "Employed"){
+            setCounter(counter+2)
+        }
+        else if(counter != 16){
+            setCounter(counter+1)
+        }
     }
+    
     
     return(
         <div className='w-screen h-screen bg-gray-100 flex relative'>
             <div className='w-2/3 h-full z-30'>
          
-                <ProgressBar currentStep={counter} totalSteps={13}/>
+                <ProgressBar currentStep={counter} totalSteps={16}/>
     
                 <div className='w-full h-4/5'>
                     {display()}
                 </div>
-                <div className={`w-full ${(counter==4 || counter==10) ? "invisible":"visible"} h-1/5 flex items-center justify-center`}>
-                  <Button disabled={disabledArray[counter-1]} text={'Next'} onClick={()=>{onClickHandler()}} color={"bg-black hover:bg-gray-800"}/>
+                <div className={`w-full  h-1/5 flex items-center justify-center space-x-5`}>
+                  <div className={`${(counter<=2) ? "invisible":"visible"}`}>
+                    <Button text={'Back'} onClick={()=>{setCounter(counter-1)}} color={"bg-black hover:bg-gray-800"}/>
+                  </div>
+                  <div className={`${(counter==4 || counter==10) ? "invisible":"visible"}`}>
+                    <Button disabled={disabledArray[counter-1]} text={counter==16?'Confirm':counter==15?'Submit':'Next'} onClick={()=>{onClickHandler()}} color={"bg-black hover:bg-gray-800"}/>
+                  </div>
                 </div>
             </div>
             <div className='w-1/3 h-full bg-green-400 relative'>

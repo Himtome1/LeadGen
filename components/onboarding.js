@@ -108,13 +108,16 @@ export function Step5({setFirstName, setLastName}) {
 
 export function Step6({setEmail, firstName}){
     return(
-        <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
+        <form className="w-full h-screen bg-white items-center justify-evenly flex flex-col pt-20 pb-[150px]">
             <div className="flex flex-col items-center">
                 <p className="text-gray-700 text-2xl font-extrabold">What is your email, {firstName}?</p> 
-                <div className="w-[250px] text-center mt-5 mb-5">
+                <div className="w-[300px] text-center mt-5 mb-5">
                     <p className="text-gray-500 text-sm">If you qualify, we will immediately let you know through email with your pre-approval offer.</p>
-                    <p className="text-gray-500 mt-2 text-sm font-bold">Please enter your email below.</p>
+                
                 </div>
+            </div>
+            <div className="flex flex-col items-center justify-center space-y-5">
+            <p className="text-gray-500 mt-2 text-sm font-bold">Please enter your email</p>
                 <InputEmail placeholder={"jsmith@email.com"} onChange={(e)=>setEmail(e.target.value)}/>
             </div>
            
@@ -300,5 +303,110 @@ export function Step12({setTimeAtAddress}){
         </div>
 
 </div>
+    )
+}
+export function Step13({setEmploymentStatus}){
+    const EMPLOYMENT_STATUS = ['Employed', 'Self-Employed', 'Unemployed', 'Retired', 'Other']
+    return(
+        <div className="w-full h-screen bg-white items-center justify-evenly flex flex-col pt-20 pb-[150px]">
+            
+        <div className="flex flex-col items-center space-y-5">
+            <p className="text-gray-700 text-2xl font-extrabold">What is your current employment status?</p>
+            <div className=" text-center space-y-10">
+                <p className="text-gray-500 text-sm w-[300px]">This information will let us match you with the best possible interest rate for your vehicle of choosing.</p>
+                <p className="text-gray-600 text-sm font-bold">Pick the option that fits your situation the best.</p>
+            </div>
+            
+        </div>
+        <Mosaic onClick={setEmploymentStatus} data={EMPLOYMENT_STATUS} columns={5}/>
+
+   
+</div>
+    )
+}
+export function Step14({setEmployemntDetails, employmentDetails}){
+    const [warning, setWarning] = useState(false)
+    return(
+        <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
+            
+                    <div className="flex flex-col h-1/2 justify-end items-center space-y-5 relative">
+                        <h1 className="text-gray-700 text-2xl font-extrabold">Tell us a bit about your job.</h1>
+                        <h1 className="text-gray-600 text-sm font-bold">Your employer will not be contacted.</h1>
+                        <div className="flex space-y-2 items-end justify-center flex-col ">
+                            <AddressInput label={"Company name"} placeholder={"Ex. Google"} 
+                            onChange={(e)=>{
+                                setEmployemntDetails({...employmentDetails, employer: e.target.value})}}/>
+                            <div className="flex items-center">
+                                <AddressInput label={"Time at Company (years)"} placeholder={"Ex. 5"} onChange={(e)=>{
+                                    if(/^[0-9]*$/.test(e.target.value) == false){
+                                        setWarning(true)
+                                        return
+                                    }
+                                    setWarning(false)
+                                    setEmployemntDetails({...employmentDetails, duration: e.target.value})
+                                    }}/>
+                                {warning? <p className="text-red-500 text-sm absolute bottom-[-20px] w-full text-center">Please enter a valid number</p>: null}
+                            </div>
+                            <AddressInput label={"Position Title"} placeholder={"Ex. Engineer"} onChange={(e)=>setEmployemntDetails({...employmentDetails, position: e.target.value})}/>
+                        </div>        
+                    </div>
+                    <div className="flex h-1/2 items-end pb-20">
+                        <p className="text-gray-500">This information is used to accelerate your application processing time.</p>
+                    </div>
+            
+        </div>
+    )
+}
+export function Step15({setMonthlyIncome}){
+    const [warning, setWarning] = useState(false)
+    return(
+        <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
+            
+                    <div className="flex flex-col h-1/2 justify-end items-center space-y-5 relative">
+                        <h1 className="text-gray-700 text-3xl font-extrabold">What is your monthly income?</h1>
+                        <h1 className="text-gray-600 text-sm font-bold">Please report the amount before taxes and deductions</h1>
+                        <div className="flex space-y-2 items-end justify-center flex-col ">  
+                                <div className="flex items-center">
+                                    <AddressInput label={"Total monthly income: $"} placeholder={"Ex. 3500"} onChange={(e)=>{
+                                        if(/^[0-9]*$/.test(e.target.value) == false){
+                                            setWarning(true)
+                                            return
+                                        }
+                                        setWarning(false)
+                                        setMonthlyIncome(e.target.value)
+                                        }}/>
+                                        <p className="text-xs text-gray-700">per month</p>
+                                </div>
+                                {warning? <p className="text-red-500 text-sm absolute bottom-[-20px] w-full text-center">Please enter a valid number</p>: null}
+                        </div>
+                    </div>
+                    <div className="flex h-1/2 items-end pb-20">
+                        <p className="text-gray-500">This information is used to accelerate your application processing time.</p>
+                    </div>
+            
+        </div>
+    )
+}
+export function Step16({vehicleType, phoneNumber, firstName, lastName, budget, DOB, address, ownHome, monthlyPayment, timeAtAddress, employmentStatus, employmentDetails, monthlyIncome}){
+    return(
+        <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">       
+            <h1 className="text-gray-700 text-3xl font-extrabold">Summary</h1>
+            <ul className="text-sm">
+                <li>Desired Vehicle: <span className="font-bold">{vehicleType}</span></li>
+                <li>Phone Number: <span className="font-bold">{phoneNumber}</span></li>
+                <li>Name: <span className="font-bold">{firstName} {lastName}</span></li>
+                <li>Monthly Budget: <span className="font-bold">$ {budget}</span></li>
+                <li>Date of Birth: <span className="font-bold">{DOB}</span></li>
+                <li>Address: <span className="font-bold">{address.address}, {address.city}, {address.province}, {address.postalCode}</span></li>
+                <li>Home Ownership: <span className="font-bold">{ownHome == "mortgage"?"Home Owner":"Renter"}</span></li>
+                <li>Monthly Housing Expense: <span className="font-bold">$ {monthlyPayment}</span></li>
+                <li>Time at Address: <span className="font-bold">{timeAtAddress.years} years, {timeAtAddress.months} months</span></li>
+                <li>Employment Status: <span className="font-bold">{employmentStatus}</span></li>
+                <li>Place of Employment: <span className="font-bold">{employmentDetails.employer}</span></li>
+                <li>Position: <span className="font-bold">{employmentDetails.position}</span></li>
+                <li>Time at Place of Employment: <span className="font-bold">{employmentDetails.duration} years</span></li>
+                <li>Monthly Income: <span className="font-bold">$ {monthlyIncome}</span></li>
+            </ul>
+        </div>
     )
 }

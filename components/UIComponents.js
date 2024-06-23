@@ -213,10 +213,14 @@ export function Mosaic({data, onClick, columns}){
 }
 
 export function ProgressBar({currentStep, totalSteps}){
+  var barColor = "bg-black"
+  if(currentStep == totalSteps){
+    barColor = "bg-lime-500"
+  }
   const progress = (currentStep/totalSteps)*100
   return(
     <div className="relative h-2 w-full bg-gray-300 rounded-lg">
-      <div className="absolute h-2 bg-black rounded-lg" style={{width:`${progress}%`}}></div>
+      <div className={`absolute h-2 ${barColor} rounded-lg`} style={{width:`${progress}%`}}></div>
     </div>
   )
 }
