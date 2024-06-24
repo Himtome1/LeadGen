@@ -4,7 +4,7 @@ import {Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10, S
 import { Button } from '@/components/UIComponents'
 import {useState, useEffect, use} from 'react'
 import Image from 'next/image'
-import { SendMessage, SaveLead, SendEmail } from '@/lib/serverComponents'
+import { SendMessage, SaveLead, SendFinalEmail, SendPartialEmail } from '@/lib/serverComponents'
 import { ProgressBar } from '@/components/UIComponents'
 import { useRouter } from 'next/navigation'
 
@@ -237,7 +237,7 @@ export default function Page(){
             employmentDetails: employmentDetails,
             monthlyIncome: monthlyIncome
         })*/
-        const res = await SendEmail({
+        const res = await SendFinalEmail({
             vehicleType: vehicleType,
             phoneNumber: number,
             firstName: firstName,
@@ -255,10 +255,20 @@ export default function Page(){
         })
         setCounter(17)
     }
-
+    const handlePartialSubmit = async() => {
+        await SendPartialEmail({
+            firstName: firstName,
+            lastName: lastName,
+            vehicleType: vehicleType,
+            phoneNumber: number
+        })
+        await SendMessage("17787008157", "Hello! An application has been partially submitted. Please check your email for more information and watch out for the completed application.")
+    }
     const onClickHandler = () => {
         switch(counter){
             case 3: SendMessage(number, `Thank you for your interest in financing. Your generated OTP is: ${generatedOTP}`)
+            break
+            case 5:  handlePartialSubmit()
             break
             case 16: handleFinalSubmit()
             break
