@@ -283,7 +283,7 @@ export default function Page(){
     
     
     return(
-        <div className='w-screen h-screen bg-gray-100 flex relative'>
+        <div className='w-screen h-screen bg-gray-100 flex relative overflow-y-clip'>
             <div className='w-2/3 h-full z-30'>
          
                 <ProgressBar currentStep={counter} totalSteps={17}/>
