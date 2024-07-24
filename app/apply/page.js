@@ -2,9 +2,9 @@
 import {motion, AnimatePresence} from 'framer-motion'
 import {Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9, Step10, Step11, Step12, Step13, Step14, Step15, Step16, Step17} from '@/components/onboarding.js'
 import { Button } from '@/components/UIComponents'
-import {useState, useEffect, use} from 'react'
+import {useState, useEffect} from 'react'
 import Image from 'next/image'
-import { SendMessage, SaveLead, SendFinalEmail, SendPartialEmail } from '@/lib/serverComponents'
+import { SendMessage, SendFinalEmail, SendPartialEmail } from '@/lib/serverComponents'
 import { ProgressBar } from '@/components/UIComponents'
 import { useRouter } from 'next/navigation'
 
