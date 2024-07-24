@@ -34,7 +34,7 @@ export default function Page(){
               
               </motion.div>
           <motion.div initial={{y:"10vh", opacity: 0}} whileInView={{y:0, opacity:1}} transition={{duration:1}} className='w-1/3 flex flex-col p-20 h-1/2 mb-60 ml-20  space-y-5 items-end '>
-            <p className='w-full text-5xl tefont-bold font-arial'>
+            <p className='w-full text-5xl font-bold font-arial'>
               Powersport Financing
             </p>
             <p className='w-full text-5xl font-bold font-arial'>

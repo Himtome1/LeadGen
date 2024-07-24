@@ -288,7 +288,7 @@ export default function Page(){
          
                 <ProgressBar currentStep={counter} totalSteps={17}/>
     
-                <div className='w-full h-4/5'>
+                <div className='w-full h-4/5 text-black'>
                     {display()}
                 </div>
                 <div className={`w-full  h-1/5 flex items-center justify-center space-x-5`}>
