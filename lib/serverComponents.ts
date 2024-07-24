@@ -2,7 +2,6 @@
 import { PrismaClient } from "@prisma/client"
 import { Resend } from "resend";
 var nodemailer = require('nodemailer');
-const prisma = new PrismaClient()
 const twilioApiKey = process.env.TWILIO_API_KEY || "No Key Found"
 export async function SendMessage(to:string, message:string){
     const details = {
@@ -28,34 +27,6 @@ export async function SendMessage(to:string, message:string){
   }
 
 
-export async function SaveLead(input:{email:string, vehicleType:string, phoneNumber:string, firstName:string, lastName:string, budget:string, DOB:string, address:any, ownHome:boolean, monthlyPayment:string, timeAtAddress:string, employmentStatus:string, employmentDetails:{employer:string,duration:string,position:string}, monthlyIncome:string}){
-  const {email, vehicleType, phoneNumber, firstName, lastName, budget, DOB, address, ownHome, monthlyPayment, timeAtAddress, employmentStatus, employmentDetails, monthlyIncome} = input
-  console.log(budget, monthlyPayment, timeAtAddress, employmentStatus, employmentDetails, monthlyIncome)
-  await prisma.leads.create({
-    data:{
-      email:email,
-      vehicleType:vehicleType,
-      firstName:firstName,
-      lastName:lastName,
-      budget:budget,
-      DOB:DOB,
-      phone:phoneNumber,
-      address:address.address,
-      city:address.city,
-      province:address.province,
-      postalCode:address.postalCode,
-      homeOwner:ownHome,
-      monthlyPayment:monthlyPayment,
-      timeAtAddress:timeAtAddress,
-      employmentStatus:employmentStatus,
-      employer:employmentDetails.employer,
-      duration:employmentDetails.duration,
-      position:employmentDetails.position,
-      monthlyIncome:monthlyIncome,
-      leadStatus:"New"
-    }})
-  
-  return "Lead Saved"}
 
 export async function SendFinalEmail(input:{email:string, vehicleType:string, phoneNumber:string, firstName:string, lastName:string, budget:string, DOB:string, address:any, ownHome:boolean, monthlyPayment:string, timeAtAddress:string, employmentStatus:string, employmentDetails:{employer:string,duration:string,position:string}, monthlyIncome:string}){
   const html = 
