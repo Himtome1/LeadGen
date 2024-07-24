@@ -82,3 +82,15 @@ export async function SendPartialEmail(input:{vehicleType:string, phoneNumber:st
 })
 console.log(res)
 }
+export async function SendPartialEmail2(input:{email:string, firstName:string, lastName:string}){
+  const html ='<h1>New Lead Alert</h1> </br> <p> A new lead has been submitted on the website.</p> </br> <p>Details:</p> </br> <p> Name: '+input.firstName+' '+input.lastName+'</p> </br> <p> Email: '+input.email+'</p> </br> </br> <p> Please follow up with this lead as soon as possible.</p>'
+  const resend = new Resend(process.env.RESEND_API_KEY)
+  const res = await resend.emails.send({
+    from: "leadgen@inter-datum.com",
+    to: "kaevind303@gmail.com",
+    cc: "Paolosotelo@outlook.com",
+    subject: "New Partial Lead!",
+    html: html
+})
+console.log(res)
+}

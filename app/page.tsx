@@ -2,28 +2,44 @@
 import {Button, Input, InputSmall} from '@/components/UIComponents'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
+import { SendPartialEmail2 } from '@/lib/serverComponents'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
+
+
 
 
 export default function Page(){
   const router = useRouter()
+  const [email, setEmail] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [disabled, setDisabled] = useState(true)
+  function handleApplyNow(email:string, firstName:string, lastName:string){
+    SendPartialEmail2({email:email, firstName:firstName, lastName:lastName})
+    router.push("/apply")
+  }
+  useEffect(()=>{
+    if(email.length > 0 && firstName.length > 0 && lastName.length > 0){
+      setDisabled(false)
+    }
+    else{
+      setDisabled(true)
+    }
+  },[email, firstName, lastName])
+  
   return (
     <AnimatePresence>
-    <motion.div>
+    <motion.div className='text-black'>
       <motion.div className="w-screen h-screen bg-white flex flex-col">
         <motion.div style = {{height:"90px"}}className = "w-full  bg-white flex">
-          <motion.div className="w-2/3 h-full bg-white px-56 space-x-10 flex">
-            <motion.div className='flex h-full text-center items-center'>
+          <motion.div className="w-full h-full bg-white px-10 space-x-10 flex">
+            <motion.div className='flex h-full text-start items-center'>
                 <p className='text-lg font-bold'>Powersport</p>
                 <pre> </pre>
                 <p className='text-lg text-lime-500 font-bold'>Financing</p>
             </motion.div>
-            <motion.div className='flex h-full text-center items-center'>
-                <p className='text-md text-black font-bold'>FINANCING</p>
-            </motion.div>
-            <motion.div className='flex h-full text-center items-center'>
-                <p className='text-md text-black font-bold'>RESOURCES</p>
-            </motion.div>
+          
           </motion.div>
           <motion.div className="w-1/3 h-full bg-white flex items-center  justify-center">
             <Button disabled={false} color={"bg-black hover:bg-lime-500 rounded"} onClick={()=>router.push("/apply")} text={"APPLY NOW"}></Button>
@@ -139,11 +155,11 @@ Join Powersport Financing and enjoy a stress-free path to owning your ideal powe
               <p>Get Approved Today!</p>
              </motion.div>
               <motion.div className='flex w-[350px] justify-between'>
-                <InputSmall pattern={null} onChange={()=>{}} value={null} placeholder={"First Name"}></InputSmall>
-                <InputSmall pattern={null} onChange={()=>{}} value={null} placeholder={"Last Name"}></InputSmall>
+                <InputSmall pattern={null} onChange={(e:any)=>{setFirstName(e.target.value)}} value={null} placeholder={"First Name"}></InputSmall>
+                <InputSmall pattern={null} onChange={(e:any)=>{setLastName(e.target.value)}} value={null} placeholder={"Last Name"}></InputSmall>
               </motion.div>
-              <Input placeholder={"Email"} onChange={()=>{}} value={null}></Input>
-              <Button disabled={false} color={"bg-black hover:bg-gray-900 hover:text-lime-500 rounded"} onClick={()=>router.push("/apply")} text={"APPLY NOW"}></Button>
+              <Input placeholder={"Email"} onChange={(e:any)=>{setEmail(e.target.value)}} value={null}></Input>
+              <Button disabled={disabled} color={"bg-black hover:bg-gray-900 hover:text-lime-500 rounded"} onClick={()=>handleApplyNow(email,firstName,lastName)} text={"APPLY NOW"}></Button>
               </motion.div>
 
           </motion.div>
