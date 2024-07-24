@@ -5,16 +5,17 @@ import { IoBoat } from "react-icons/io5"
 import {motion} from 'framer-motion'
 import { AddressInput, InputSmall, Input, PhoneInput, OTPInput, Mosaic, InputEmail, DateInput, Button, NumberInput } from '@/components/UIComponents'
 import {useState, useEffect} from 'react'
+import Image from "next/image"
 
 const vehicleTypes = [
-    {name: "Street Bike", image: <FaMotorcycle size={30}/>},
-    {name: "Dirt Bike", image: <GiScooter size={30}/>},
-    {name: "ATV", image: ""},
-    {name: "UTV", image: <GiScooter size={30}/>},
-    {name: "Boat", image: <IoBoat size={30}/>},
-    {name: "Jet-Ski", image: ""},
-    {name: "RV/Camper", image: <GiScooter size={30}/>},
-    {name: "Snowmobile", image: <GiScooter size={30}/>}
+    {name: "Street Bike", image: "/IMG_2939.jpg"},
+    {name: "Dirt Bike", image: "/IMG_2938.PNG"},
+    {name: "ATV", image: "/IMG_2940.PNG"},
+    {name: "UTV", image: "/IMG_2941.PNG"},
+    {name: "Boat", image: "/IMG_2947.PNG"},
+    {name: "Jet-Ski", image: "/IMG_2945.PNG"},
+    {name: "RV/Camper", image: "/IMG_2946.PNG"},
+    {name: "Snowmobile", image: "/IMG_2948.PNG"}
 
 ]
 
@@ -43,9 +44,9 @@ export function Step2({setVehicleType, selectedVehicleType}){
                     vehicleType.name == selectedVehicleType? border = "border border-lime-500": border = null
                     return(
                         <motion.button  whileHover={{scale:1.05}} onClick={()=>setVehicleType(vehicleType.name)}  key={index} className={`flex ${border} flex-col items-center justify-center w-full h-full bg-white rounded-lg shadow-md`}>
-                            <div className={`w-[100px]  h-[100px] bg-gray-100 rounded-full flex items-center justify-center`}>
-                                {vehicleType.image}
-                            </div>
+                            <Image src={vehicleType.image} width={100} height={100}>
+                              
+                            </Image>
                             <p className="text-center">{vehicleType.name}</p>
                         </motion.button>
                     )

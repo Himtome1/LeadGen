@@ -62,16 +62,42 @@ export default function Page(){
                 <motion.div className='rounded-full absolute y--20 flex top-[-66px] items-center justify-center  bg-lime-500' style={{width:"125px", height:"125px"}} >
                     <p className='text-white text-7xl font-bold '>1</p>
                 </motion.div>
+                <div className='text-black mt-[75px] flex flex-col space-y-5 px-5'>
+                  <h2 className='text-black text-xl font-bold text-center'>
+                  Apply Online
+                  </h2>
+                  <p>
+                  Start by filling out our quick and secure online application. It takes just a few minutes to provide the essential information needed to begin your financing process. Your details are kept confidential and secure, ensuring a hassle-free start to your journey.
+                  </p>
+                </div>
               </motion.div>
               <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}}className='bg-gray-100 relative rounded-xl  w-1/3 h-full flex justify-center shadow-xl'>
                 <motion.div className='rounded-full absolute y--20 flex top-[-66px] items-center justify-center  bg-lime-500' style={{width:"125px", height:"125px"}} >
                     <p className='text-white text-7xl font-bold '>2</p>
                 </motion.div>
+                <div className='text-black mt-[75px] flex flex-col space-y-5 px-5'>
+                  <h2 className='text-black text-xl font-bold text-center'>
+                  Get Approved
+                  </h2>
+                  <p>
+                  After submitting your application, our finance specialists will review it and find the best financing options for you. We partner with trusted lenders to offer competitive rates and terms. You'll receive a pre-approval decision within 24 hours, making the process fast and stress-free.
+                  </p>
+                </div>
               </motion.div>
               <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}}className='bg-gray-100 relative rounded-xl  w-1/3 h-full flex justify-center shadow-xl'>
                 <motion.div className='rounded-full absolute y--20 flex top-[-66px] items-center justify-center  bg-lime-500' style={{width:"125px", height:"125px"}} >
                     <p className='text-white text-7xl font-bold '>3</p>
                 </motion.div>
+                <div className='text-black mt-[75px] flex flex-col space-y-5 px-5'>
+                  <h2 className='text-black text-xl font-bold text-center'>
+                  Drive Away
+                  </h2>
+                  <p>
+                  Once approved, finalize the paperwork and choose your ideal powersport vehicle. Our team will guide you through the final steps, ensuring you understand your financing agreement.
+Soon, you'll be ready to enjoy your new ride with confidence. Happy adventuring!
+
+                  </p>
+                </div>
               </motion.div>
              
               </motion.div>
@@ -85,9 +111,12 @@ export default function Page(){
           <motion.div className='w-1/2 h-full flex items-center justify-center'>
             <motion.div initial={{x:"-5vw"}} whileInView={{x:0}} className='flex flex-col p-20'>
               <p className='text-5xl font-bold text-gray-900 text-center mb-10'>About Powersport Financing</p>
-              <p className='  text-gray-700 text-center'>We are a reputable loan and financing company that specializes in providing good and bad credit powersport loans for purchasing powersport vehicles such as ATVs, RVs, UTVs, Boats, Motorcycles, Sea-Doos, Snowmobiles and Travel Trailers. We offer flexible loan options, competitive interest rates, and personalized assistance to help customers secure the funds they need. With a network of trusted lenders, we ensures access to favorable loan terms. 
+              <p className='  text-gray-700 text-center'>At Powersport Financing, we specialize in making your powersport dreams a reality. Whether you need financing for ATVs, RVs, Boats, or Motorcycles, we offer flexible loan options for all credit types. Our team works with trusted lenders to secure competitive rates and personalized terms, ensuring a seamless experience.
 
-Our dedicated team of loan specialists guides applicants through the process, from application to approval, providing ongoing support and exceptional customer service. We are committed to making powersport vehicle ownership accessible and enjoyable for customers through our expertise in powersports.?</p>
+From application to approval, our dedicated loan specialists guide you every step of the way. With our expertise and commitment to exceptional customer service, you can trust us to help you get on the road or trail with confidence.
+
+Join Powersport Financing and enjoy a stress-free path to owning your ideal powersport vehicle. We're here to make the process easy and exciting, so you can focus on the thrill of your next adventure.
+</p>
             </motion.div>
 
 
@@ -102,7 +131,7 @@ Our dedicated team of loan specialists guides applicants through the process, fr
         <motion.div className="w-screen h-1/5 overflow-scroll bg-gradient-to-b from-gray-100 to-white flex flex-col">
         
         </motion.div>
-        <motion.div className='w-full h-screen bg-white flex items-center justify-center'>
+        <motion.div className='w-full h-screen text-black bg-white flex items-center justify-center'>
           <motion.div initial={{scale:0.75}} whileInView={{scale:1}}className='flex flex-col p-20 bg-lime-500 w-[600px] h-[600px] mb-20 rounded-xl drop-shadow-xl items-center justify-center'>
             <motion.div className='w-full flex h-full flex-col items-center  justify-between'>
              <motion.div></motion.div>
