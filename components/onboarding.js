@@ -256,9 +256,9 @@ export function Step11({setMonthlyPayment, ownHome}){
 }
 export function Step12({setTimeAtAddress}){
     const [warning, setWarning] = useState(false)
-    const [localTimeAtAddress, setLocalTimeAtAddress] = useState({years: 0, months: 0})
+    const [localTimeAtAddress, setLocalTimeAtAddress] = useState({years: "", months: ""})
     useEffect(()=>{
-        if(localTimeAtAddress.years != 0 && localTimeAtAddress.months != 0){
+        if(localTimeAtAddress.years != "" && localTimeAtAddress.months != ""){
             setTimeAtAddress(localTimeAtAddress)
         }
         else{
