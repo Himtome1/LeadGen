@@ -284,7 +284,7 @@ export default function Page(){
     
     return(
         <div className='w-screen h-screen text-black bg-gray-100 flex relative overflow-y-clip'>
-            <div className='w-2/3 h-full z-30'>
+            <div className='lg:w-2/3 w-full h-full z-30'>
          
                 <ProgressBar currentStep={counter} totalSteps={17}/>
     
@@ -300,7 +300,7 @@ export default function Page(){
                   </div>
                 </div>
             </div>
-            <div className='w-1/3 h-full bg-green-400 relative'>
+            <div className='lg:visible invisible lg:w-1/3 w-0 h-full bg-green-400 relative'>
                 <motion.div className='w-screen bg-blue-500 flex h-full z-0 fixed left-20' initial={{x:400}}  transition={{duration:0.25,}}>
                     <Image style={{objectFit: "cover"}} fill={true} src='/Dirtbike.jpeg'/>
                 </motion.div>

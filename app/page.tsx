@@ -33,7 +33,7 @@ export default function Page(){
     <motion.div className='text-black'>
       <motion.div className="w-screen h-screen bg-white flex flex-col">
         <motion.div style = {{height:"90px"}}className = "w-full  bg-white flex">
-          <motion.div className="w-full h-full bg-white px-10 space-x-10 flex">
+          <motion.div className="w-full h-full bg-white lg:px-10 lg:space-x-10 flex">
             <motion.div className='flex h-full text-start items-center'>
                 <p className='text-lg font-bold'>Powersport</p>
                 <pre> </pre>
@@ -41,22 +41,22 @@ export default function Page(){
             </motion.div>
           
           </motion.div>
-          <motion.div className="w-1/3 h-full bg-white flex items-center  justify-center">
+          <motion.div className="lg:w-1/3 w-[150px] h-full bg-white flex items-center  justify-center">
             <Button disabled={false} color={"bg-black hover:bg-lime-500 rounded"} onClick={()=>router.push("/apply")} text={"APPLY NOW"}></Button>
           </motion.div>
         </motion.div>
         <motion.div className='h-4/5 bg-[url("/Dirtbike.jpeg")] bg-center xl:bg-start bg-cover flex items-end'>
-        <motion.div className='w-2/3 h-full flex items-center justify-center mr-20'>
+        <motion.div className='w-2/3 h-full flex items-center justify-center lg:mr-20'>
               
               </motion.div>
-          <motion.div initial={{y:"10vh", opacity: 0}} whileInView={{y:0, opacity:1}} transition={{duration:1}} className='w-1/3 flex flex-col p-20 h-1/2 mb-60 ml-20  space-y-5 items-end '>
-            <p className='w-full text-5xl font-bold font-arial'>
+          <motion.div initial={{y:"10vh", opacity: 0}} whileInView={{y:0, opacity:1}} transition={{duration:1}} className='lg:w-1/3 flex text-white font-extrabold text-end lg:text-center lg:text-black flex-col lg:p-20 lg:h-1/2 h-full justify-center lg:mb-60 lg:ml-20  space-y-5 items-end '>
+            <p className='w-full text-3xl lg:text-5xl font-bold font-arial'>
               Powersport Financing
             </p>
-            <p className='w-full text-5xl font-bold font-arial'>
-              Simplified
+            <p className='w-full text-black bg-white lg:bg-none text-4xl lg:text-5xl font-bold font-arial'>
+              Simplified.
             </p>
-            <p className='text-lg font-fine'>
+            <p className='lg:text-lg lg:font-fine lg:visible invisible'>
               Get approved from your phone for powersports loans & powersports financing today!
             </p>
             <motion.div className='text-sm pt-5 items-center justify-center flex w-full'></motion.div>
@@ -65,16 +65,16 @@ export default function Page(){
         
         </motion.div>
       </motion.div>
-      <motion.div className="w-screen h-screen bg-white flex flex-col">
+      <motion.div className="relative w-screen lg:h-screen bg-white flex flex-col">
 
-        <motion.div className='w-full  h-full flex flex-col items-center justify-center'>
+        <motion.div className='relative w-full  h-full flex flex-col items-center justify-center'>
 
-          <motion.div className='flex flex-col w-2/3 h-full'>
+          <motion.div className='relative flex flex-col lg:w-2/3 px-2 lg:px-0 h-full'>
             <motion.div className='text-5xl font-bold text-center text-gray-700 h-1/5'>
                 <p>How it works.</p>
             </motion.div>
-            <motion.div className=' w-full h-2/3 items-center flex justify-center space-x-10 py-20'>
-              <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}} className='bg-gray-100 relative rounded-xl  w-1/3 h-full flex justify-center shadow-xl'>
+            <motion.div className=' w-full lg:h-2/3 items-center lg:flex space-y-[200px] lg:space-y-0 flex-col justify-center lg:space-x-10 py-20'>
+              <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}} className='bg-gray-100 relative rounded-xl  lg:w-1/3 lg:h-full pb-5 flex justify-center shadow-xl'>
                 <motion.div className='rounded-full absolute y--20 flex top-[-66px] items-center justify-center  bg-lime-500' style={{width:"125px", height:"125px"}} >
                     <p className='text-white text-7xl font-bold '>1</p>
                 </motion.div>
@@ -87,7 +87,7 @@ export default function Page(){
                   </p>
                 </div>
               </motion.div>
-              <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}}className='bg-gray-100 relative rounded-xl  w-1/3 h-full flex justify-center shadow-xl'>
+              <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}}className='bg-gray-100 relative rounded-xl  lg:w-1/3 lg:h-full pb-5 flex justify-center shadow-xl'>
                 <motion.div className='rounded-full absolute y--20 flex top-[-66px] items-center justify-center  bg-lime-500' style={{width:"125px", height:"125px"}} >
                     <p className='text-white text-7xl font-bold '>2</p>
                 </motion.div>
@@ -100,7 +100,7 @@ export default function Page(){
                   </p>
                 </div>
               </motion.div>
-              <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}}className='bg-gray-100 relative rounded-xl  w-1/3 h-full flex justify-center shadow-xl'>
+              <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}}className='bg-gray-100 relative rounded-xl  lg:w-1/3 lg:h-full pb-5 flex justify-center shadow-xl'>
                 <motion.div className='rounded-full absolute y--20 flex top-[-66px] items-center justify-center  bg-lime-500' style={{width:"125px", height:"125px"}} >
                     <p className='text-white text-7xl font-bold '>3</p>
                 </motion.div>
@@ -123,8 +123,8 @@ Soon, you'll be ready to enjoy your new ride with confidence. Happy adventuring!
         </motion.div>
       
         </motion.div>
-        <motion.div className="w-screen h-screen bg-gray-100  flex justify-end">
-          <motion.div className='w-1/2 h-full flex items-center justify-center'>
+        <motion.div className="lg:w-screen lg:h-screen bg-gray-100  flex justify-end">
+          <motion.div className='lg:w-1/2 w-full h-full flex items-center justify-center'>
             <motion.div initial={{x:"-5vw"}} whileInView={{x:0}} className='flex flex-col p-20'>
               <p className='text-5xl font-bold text-gray-900 text-center mb-10'>About Powersport Financing</p>
               <p className='  text-gray-700 text-center'>At Powersport Financing, we specialize in making your powersport dreams a reality. Whether you need financing for ATVs, RVs, Boats, or Motorcycles, we offer flexible loan options for all credit types. Our team works with trusted lenders to secure competitive rates and personalized terms, ensuring a seamless experience.
@@ -148,7 +148,7 @@ Join Powersport Financing and enjoy a stress-free path to owning your ideal powe
         
         </motion.div>
         <motion.div className='w-full h-screen text-black bg-white flex items-center justify-center'>
-          <motion.div initial={{scale:0.75}} whileInView={{scale:1}}className='flex flex-col p-20 bg-lime-500 w-[600px] h-[600px] mb-20 rounded-xl drop-shadow-xl items-center justify-center'>
+          <motion.div initial={{scale:0.75}} whileInView={{scale:1}}className='flex flex-col lg:p-20 px-2  py-5 bg-lime-500 w-[600px] h-[600px] mb-20 rounded-xl drop-shadow-xl items-center justify-center'>
             <motion.div className='w-full flex h-full flex-col items-center  justify-between'>
              <motion.div></motion.div>
              <motion.div  className='text-5xl items-center justify-center font-bold text-center w-full flex'>
