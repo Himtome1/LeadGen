@@ -33,12 +33,12 @@ export function Step1(){
 }
 export function Step2({setVehicleType, selectedVehicleType}){
     return(
-        <div className='w-full h-screen bg-gray-100 flex flex-col'>
+        <div className='w-full min-h-screen bg-gray-100 flex flex-col'>
             <div className='flex flex-col items-center justify-start h-full'>
                 <div className="h-1/8">
                     <h1 className='text-2xl font-extrabold text-black mt-2'>Select your vehicle type</h1>
                 </div>
-            <div className = "grid grid-cols-4 grid-rows-2 w-2/3 px-2 h-2/3 gap-3 pb-2 pt-5">
+            <div className = "grid lg:grid-cols-4 grid-cols-3 lg:grid-rows-2 lg:w-2/3 px-2 lg:h-2/3 gap-3 pb-2 pt-5">
                 {vehicleTypes.map((vehicleType, index) => {
                     var border =""
                     vehicleType.name == selectedVehicleType? border = "border border-lime-500": border = null
