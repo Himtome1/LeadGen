@@ -39,7 +39,7 @@ export function InputSmall({onChange, placeholder, value, pattern}) {
       var localWidth = "w-[150px]"
     }
     return(
-    <div className="relative flex items-center justify-center space-x-2 p-2">
+    <div className="relative flex items-center w-full justify-between lg:px-10 lg:px-0 lg:justify-center lg:space-x-2 lg:p-2">
       <p className="text-gray-600 text-xs" >{label}</p>
       <input  className={`border-gray-300 border h-[40px] p-[5px] text-sm text-left ${localWidth} text-sm rounded-lg`} placeholder={placeholder} value={value} onChange={onChange} />
     </div>

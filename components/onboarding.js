@@ -43,7 +43,7 @@ export function Step2({setVehicleType, selectedVehicleType}){
                     var border =""
                     vehicleType.name == selectedVehicleType? border = "border border-lime-500": border = null
                     return(
-                        <motion.button  whileHover={{scale:1.05}} onClick={()=>setVehicleType(vehicleType.name)}  key={index} className={`flex ${border} flex-col items-center justify-center w-full h-full bg-white rounded-lg shadow-md`}>
+                        <motion.button  whileHover={{scale:1.05}} onClick={()=>setVehicleType(vehicleType.name)}  key={index} className={`flex ${border} flex-col items-center justify-center w-full lg:h-[250px] h-full bg-white rounded-lg shadow-md`}>
                             <Image src={vehicleType.image} width={100} height={100}>
                               
                             </Image>
@@ -172,12 +172,12 @@ export function Step9({setAddress}){
                         <p className="text-gray-500 text-sm">This information is used to accelerate application processing times.</p>
                     </div>
                 </div>
-                <div className=" rounded flex flex-col w-full h-full p-20">
+                <div className=" rounded flex flex-col w-full h-full lg:p-20">
                     <div className=" rounded-lg">
                         <div className="w-full items-center justify-center flex ">
                             <h1 className="text-sm text-gray-500 font-bold">Please enter your address information below</h1>
                         </div>
-                        <div className="w-full grid grid-cols-2 px-5 py-5 border-t-2">
+                        <div className="w-full grid lg:grid-cols-2 px-5 py-5 border-t-2  space-y-5 lg:space-y-0">
                             <div className="flex w-full justify-left">
                                 <AddressInput label={"Address"} placeholder={"1234 Main St"} onChange={(e)=>setLocalAddress({...localAddress, address: e.target.value})}/>
                             </div>
@@ -187,7 +187,7 @@ export function Step9({setAddress}){
                             <div className="flex w-full justify-left">
                                 <AddressInput label={"City"} width={'100'} placeholder={"Metropolis"} onChange={(e)=>setLocalAddress({...localAddress, city: e.target.value})}/>
                             </div>
-                            <div className="flex items-center justify-left w-full space-x-2 pl-2">
+                            <div className="flex items-center lg:justify-center  justify-between w-full  lg:space-x-2 lg:px-[0px] lg:pl-2">
                                 <p className="text-xs text-gray-700 ">Province</p>
                                 <select defaultValue={"BC"} name="Province" className="text-xs border rounded-lg h-[40px] border-gray-300" onChange={(e)=>setLocalAddress({...localAddress, province: e.target.value})}>
                                   <option value="AB">Alberta</option>
@@ -227,7 +227,7 @@ export function Step10({setOwnHome}){
 export function Step11({setMonthlyPayment, ownHome}){
     const [warning, setWarning] = useState(false)
     return(
-        <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
+        <div className="w-full h-screen bg-white lg:text-left text-center items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
             
                     <div className="flex flex-col h-1/2 justify-end items-center space-y-5 relative">
                         <h1 className="text-gray-700 text-2xl font-extrabold">How much is your {ownHome} each month?</h1>
@@ -268,11 +268,11 @@ export function Step12({setTimeAtAddress}){
     return(
         <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
             
-        <div className="flex flex-col h-1/2 justify-end space-y-5 relative items-center">
+        <div className="flex flex-col lg:h-1/2 justify-end space-y-5 relative text-center lg:text-left p-5 lg:p-0 items-center">
             <h1 className="text-gray-700 text-2xl font-extrabold">How long have you been at your current address for?</h1>
             <p className="text-gray-600 text-sm font-bold">Estimates are fine if you are not sure.</p>
             <div>
-                <div className="flex space-x-5 items-center justify-center">
+                <div className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-5  items-center justify-center">
                     <AddressInput label={"Years"} placeholder={"Ex. 5"} onChange={(e)=>{
                         if(/^[0-9]*$/.test(e.target.value) == false){
                             setLocalTimeAtAddress({...localTimeAtAddress, years: 0})
@@ -299,7 +299,7 @@ export function Step12({setTimeAtAddress}){
             </div>
         {warning? <p className="text-red-500 text-sm absolute bottom-[-20px] w-full text-center">Please enter a valid number</p>: null}
         </div>
-        <div className="flex h-1/2 items-end pb-20">
+        <div className="flex h-1/2 text-center lg:text-left items-end pb-20">
             <p className="text-gray-500">This information is used to accelerate your application processing time.</p>
         </div>
 
@@ -309,7 +309,7 @@ export function Step12({setTimeAtAddress}){
 export function Step13({setEmploymentStatus}){
     const EMPLOYMENT_STATUS = ['Employed', 'Self-Employed', 'Unemployed', 'Retired', 'Other']
     return(
-        <div className="w-full h-screen bg-white items-center justify-evenly flex flex-col pt-20 pb-[150px]">
+        <div className="w-full h-screen bg-white items-center lg:text-left text-center justify-evenly flex flex-col pt-20 pb-[150px]">
             
         <div className="flex flex-col items-center space-y-5">
             <p className="text-gray-700 text-2xl font-extrabold">What is your current employment status?</p>
@@ -328,7 +328,7 @@ export function Step13({setEmploymentStatus}){
 export function Step14({setEmployemntDetails, employmentDetails}){
     const [warning, setWarning] = useState(false)
     return(
-        <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
+        <div className="w-full h-screen bg-white items-center justify-center text-center lg:text-left flex space-y-5 flex-col pt-20 pb-[150px]">
             
                     <div className="flex flex-col h-1/2 justify-end items-center space-y-5 relative">
                         <h1 className="text-gray-700 text-2xl font-extrabold">Tell us a bit about your job.</h1>
@@ -361,7 +361,7 @@ export function Step14({setEmployemntDetails, employmentDetails}){
 export function Step15({setMonthlyIncome}){
     const [warning, setWarning] = useState(false)
     return(
-        <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
+        <div className="w-full h-screen bg-white items-center text-center lg:text-left justify-center flex space-y-5 flex-col pt-20 pb-[150px]">
             
                     <div className="flex flex-col h-1/2 justify-end items-center space-y-5 relative">
                         <h1 className="text-gray-700 text-3xl font-extrabold">What is your monthly income?</h1>
@@ -413,7 +413,7 @@ export function Step16({vehicleType, phoneNumber, firstName, lastName, budget, D
 }
 export function Step17(){
     return(
-        <div className="w-full h-screen bg-white items-center justify-center flex space-y-5 flex-col pt-20 pb-[150px]">       
+        <div className="w-full h-screen bg-white items-center text-center lg:text-left justify-center flex space-y-5 flex-col pt-20 pb-[150px]">       
             <h1 className="text-gray-700 text-3xl font-extrabold">Congratulations!</h1>
             <h2 className="text-gray-600 text-xl font-bold">You have successfully completed your application</h2>
             <p className="text-gray-500">An associate will be in touch shortly to discuss the next steps.</p>

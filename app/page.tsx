@@ -73,7 +73,7 @@ export default function Page(){
             <motion.div className='text-5xl font-bold text-center text-gray-700 h-1/5'>
                 <p>How it works.</p>
             </motion.div>
-            <motion.div className=' w-full lg:h-2/3 items-center lg:flex space-y-[200px] lg:space-y-0 flex-col justify-center lg:space-x-10 py-20'>
+            <motion.div className=' w-full lg:h-2/3 items-center lg:flex space-y-[200px] lg:space-y-0 flex-col lg:flex-row justify-center lg:space-x-10 py-20'>
               <motion.div whileHover={{y:"1vh", transition:{duration:0.8}}} className='bg-gray-100 relative rounded-xl  lg:w-1/3 lg:h-full pb-5 flex justify-center shadow-xl'>
                 <motion.div className='rounded-full absolute y--20 flex top-[-66px] items-center justify-center  bg-lime-500' style={{width:"125px", height:"125px"}} >
                     <p className='text-white text-7xl font-bold '>1</p>
