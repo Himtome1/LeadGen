@@ -72,7 +72,7 @@ export function Step3({onComplete, variable1, setNumber, onEnter}) {
 export function Step4({onComplete, variable1, number, generatedOTP, setReceivedOTP }) {
     return(
         <form className="w-full h-screen bg-white items-center justify-center space-y-5 flex flex-col">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center lg:text-start text-center">
                 <h1 className="text-2xl font-extrabold pb-10 text-gray-700">Please confirm your phone number</h1>
                 <p className="text-gray-600 text-sm font-bold">Enter the 4 digit code that was sent to +{number[0]} {`(${number.slice(1,4)}) `}{number.slice(4,7)}-{number.slice(7-11)}</p>
             </div>
