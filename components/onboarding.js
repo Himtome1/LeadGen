@@ -130,7 +130,7 @@ export function Step7({setBudget, budget}){
     return(
         <div className="w-full h-screen bg-white items-center justify-evenly flex flex-col pt-20 pb-[150px]">
             
-                <div className="flex flex-col items-center space-y-5">
+                <div className="flex flex-col items-center lg:text-start text-center space-y-5">
                     <p className="text-gray-700 text-2xl font-extrabold">What is your monthly budget for financing?</p>
                     <div className="w-[250px] text-center">
                         <p className="text-gray-500 text-sm">This information will let us match you with the best possible interest rate for your vehicle of choosing.</p>

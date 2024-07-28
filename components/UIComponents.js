@@ -194,7 +194,7 @@ return(
 
 export function Mosaic({data, onClick, columns}){
   const [selected, setSelected] = useState(null)
-  const columnsCSS = `grid-cols-5`
+  const columnsCSS = `lg:grid-cols-5 grid-cols-3`
   return(
     <div className={`grid ${columnsCSS} gap-3`}>
       {data.map((amount, index)=>{
@@ -203,7 +203,7 @@ export function Mosaic({data, onClick, columns}){
           border = "border-lime-400"
         }
         return(
-          <button key={index} className={`flex items-center border text-center ${border} justify-center w-[125px] h-[125px] bg-white rounded-lg shadow-md`} onClick={()=>{onClick(amount), setSelected(amount)}}>
+          <button key={index} className={`flex items-center border text-center ${border} justify-center w-[100px] h-[100px] lg:w-[125px] lg:h-[125px] bg-white rounded-lg shadow-md`} onClick={()=>{onClick(amount), setSelected(amount)}}>
             <p>{amount}</p>
           </button>
         )
