@@ -74,7 +74,7 @@ return(
     arrayOfRefs[index] = useRef() //populating the array with refs for each input field
     return(
       <div className="flex items-center">
-        <input key={index} ref={arrayOfRefs[index]} autoFocus = {index==0} maxLength={1} className=" border-gray-300 border text-center w-[50px] h-[50px] rounded"  value={p}
+        <input key={index} ref={arrayOfRefs[index]} autoFocus = {index==0} maxLength={1} className=" border-gray-300 border text-center w-[25px] h-[25px] lg:w-[50px] lg:h-[50px] rounded"  value={p}
 
         onKeyDown={(e) => { 
           if (e.key == "Enter" && !phone.includes("")){
@@ -110,7 +110,7 @@ return(
         }}
        />
        { 
-        index == 2 || index == 5 ? <span className="text-2xl"><pre> - </pre></span> : null //adds a dash after the third and sixth input field
+        index == 2 || index == 5 ? <span className="lg:text-2xl"><pre> - </pre></span> : null //adds a dash after the third and sixth input field
        }
       </div>
     )
