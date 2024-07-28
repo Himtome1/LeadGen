@@ -31,7 +31,7 @@ export default function Page(){
   return (
     <AnimatePresence>
     <motion.div className='text-black'>
-      <motion.div className="w-screen h-screen bg-white flex flex-col">
+      <motion.div className="w-screen h-screen bg-white flex flex-col p-2 lg:p-0">
         <motion.div style = {{height:"90px"}}className = "w-full  bg-white flex">
           <motion.div className="w-full h-full bg-white lg:px-10 lg:space-x-10 flex">
             <motion.div className='flex h-full text-start items-center'>
@@ -143,13 +143,13 @@ Join Powersport Financing and enjoy a stress-free path to owning your ideal powe
        
       
       </motion.div>
-      <motion.div className='w-screen h-screen flex flex-col'>
-        <motion.div className="w-screen h-1/5 overflow-scroll bg-gradient-to-b from-gray-100 to-white flex flex-col">
+      <motion.div className='lg:w-screen w-full h-screen flex flex-col'>
+        <motion.div className="w-full lg:w-screen h-1/5 overflow-scroll bg-gradient-to-b from-gray-100 to-white flex flex-col">
         
         </motion.div>
-        <motion.div className='w-full h-screen text-black bg-white flex items-center justify-center'>
-          <motion.div initial={{scale:0.75}} whileInView={{scale:1}}className='flex flex-col lg:p-20 px-2  py-5 bg-lime-500 w-[600px] h-[600px] mb-20 rounded-xl drop-shadow-xl items-center justify-center'>
-            <motion.div className='w-full flex h-full flex-col items-center  justify-between'>
+        <motion.div className='w-full h-screen text-black bg-white lg:p-0 flex items-center justify-center'>
+          <motion.div initial={{scale:0.75}} whileInView={{scale:1}}className='flex flex-col lg:p-20 px-2  py-5 bg-lime-500 w-full lg:w-[600px] lg:h-[600px] h-screen lg:mb-20 rounded-xl drop-shadow-xl items-center justify-center'>
+            <motion.div className='w-full flex h-full flex-col items-center justify-center lg:justify-between space-y-10'>
              <motion.div></motion.div>
              <motion.div  className='text-5xl items-center justify-center font-bold text-center w-full flex'>
               <p>Get Approved Today!</p>
