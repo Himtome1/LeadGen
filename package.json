@@ -23,6 +23,7 @@
     "resend": "^3.3.0",
     "sharp": "^0.33.4",
     "studio": "^0.13.5",
+    "twilio": "^5.5.0",
     "vercel": "^34.2.0"
   },
   "devDependencies": {

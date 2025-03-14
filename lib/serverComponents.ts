@@ -1,30 +1,29 @@
 "use server"
 import { PrismaClient } from "@prisma/client"
+
+import twilio from "twilio";
 import { Resend } from "resend";
 var nodemailer = require('nodemailer');
 const twilioApiKey = process.env.TWILIO_API_KEY || "No Key Found"
-export async function SendMessage(to:string, message:string){
-    const details = {
-      "To":`\"${to}\"`,
-      "From":"+14794580714",
-      "Parameters":`{\"message\":\"${message}\"}`
-    } as any
-    console.log(details)
-    var formBody = []; 
-  for (var property in details) {
-    var encodedKey = encodeURIComponent(property);
-    var encodedValue = encodeURIComponent(details[property] );
-    formBody.push(encodedKey + "=" + encodedValue);
-  }
-  formBody = formBody.join("&") as any
-  
-    const res = await fetch("https://studio.twilio.com/v2/Flows/FW95984a6bf9dab7fe6b6f8504ff10a288/Executions",
-    {method:"POST", headers:{'Authorization': 'Basic ' + btoa(twilioApiKey),
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-      body:formBody}) 
-    const data = await res.json()
-    return data
-  }
+
+
+// Find your Account SID and Auth Token at twilio.com/console
+// and set the environment variables. See http://twil.io/secure
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_API_KEY;
+console.log(authToken,accountSid)
+const client = twilio(accountSid, authToken);
+
+export async function SendMessage(to:string, message:string) {
+  const res = await client.messages.create({
+    body: message,
+    from: "+17786018032",
+    to: to,
+  });
+
+  console.log(res.body);
+}
+
 
 
 
