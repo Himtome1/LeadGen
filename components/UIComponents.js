@@ -39,7 +39,7 @@ export function InputSmall({onChange, placeholder, value, pattern}) {
       var localWidth = "w-[150px]"
     }
     return(
-    <div className="relative flex items-center justify-center space-x-2 p-2">
+    <div className="relative flex items-center w-full justify-between lg:px-10 lg:px-0 lg:justify-center lg:space-x-2 lg:p-2">
       <p className="text-gray-600 text-xs" >{label}</p>
       <input  className={`border-gray-300 border h-[40px] p-[5px] text-sm text-left ${localWidth} text-sm rounded-lg`} placeholder={placeholder} value={value} onChange={onChange} />
     </div>
@@ -74,7 +74,7 @@ return(
     arrayOfRefs[index] = useRef() //populating the array with refs for each input field
     return(
       <div className="flex items-center">
-        <input key={index} ref={arrayOfRefs[index]} autoFocus = {index==0} maxLength={1} className=" border-gray-300 border text-center w-[50px] h-[50px] rounded"  value={p}
+        <input key={index} ref={arrayOfRefs[index]} autoFocus = {index==0} maxLength={1} className=" border-gray-300 border text-center w-[25px] h-[25px] lg:w-[50px] lg:h-[50px] rounded"  value={p}
 
         onKeyDown={(e) => { 
           if (e.key == "Enter" && !phone.includes("")){
@@ -110,7 +110,7 @@ return(
         }}
        />
        { 
-        index == 2 || index == 5 ? <span className="text-2xl"><pre> - </pre></span> : null //adds a dash after the third and sixth input field
+        index == 2 || index == 5 ? <span className="lg:text-2xl"><pre> - </pre></span> : null //adds a dash after the third and sixth input field
        }
       </div>
     )
@@ -194,7 +194,7 @@ return(
 
 export function Mosaic({data, onClick, columns}){
   const [selected, setSelected] = useState(null)
-  const columnsCSS = `grid-cols-5`
+  const columnsCSS = `lg:grid-cols-5 grid-cols-3`
   return(
     <div className={`grid ${columnsCSS} gap-3`}>
       {data.map((amount, index)=>{
@@ -203,7 +203,7 @@ export function Mosaic({data, onClick, columns}){
           border = "border-lime-400"
         }
         return(
-          <button key={index} className={`flex items-center border text-center ${border} justify-center w-[125px] h-[125px] bg-white rounded-lg shadow-md`} onClick={()=>{onClick(amount), setSelected(amount)}}>
+          <button key={index} className={`flex items-center border text-center ${border} justify-center w-[100px] h-[100px] lg:w-[125px] lg:h-[125px] bg-white rounded-lg shadow-md`} onClick={()=>{onClick(amount), setSelected(amount)}}>
             <p>{amount}</p>
           </button>
         )
